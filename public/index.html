@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#000000" />
     <meta
       name="description"
-      content="Web site created using create-react-app"
+      content="Ullas B R - Portfolio"
     />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <!--
@@ -24,9 +24,46 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Ullas B R - Portfolio</title>
+    
+    <!-- Custom CSS Variables and Global Styles -->
+    <style type="text/tailwindcss">
+      :root {
+        --primary-color: #3d98f4;
+        --secondary-color: #101a23;
+        --accent-color: #223649;
+        --text-primary: #ffffff;
+        --text-secondary: #90adcb;
+        --border-color: #314d68;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      .gradient-text {
+        background: linear-gradient(90deg, var(--primary-color), #90adcb);
+        -webkit-background-clip: text; /* For older WebKit browsers */
+        background-clip: text;         /* Standard property */
+        color: transparent;            /* Standard way to make text transparent for background */
+      }
+      .skill-tab.active p {
+        color: var(--text-primary);
+      }
+      .skill-tab.active {
+        border-bottom-color: var(--primary-color);
+      }
+      .nav-link:hover {
+        color: var(--primary-color);
+      }
+    </style>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+
+    <!-- Google Fonts -->
+    <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+    <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Space+Grotesk%3Awght%40400%3B500%3B700" onload="this.rel='stylesheet'" rel="stylesheet"/>
   </head>
-  <body>
+  <body class="bg-[var(--secondary-color)] text-[var(--text-primary)]" style='font-family: "Space Grotesk", "Noto Sans", sans-serif;'>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
