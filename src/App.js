@@ -284,7 +284,7 @@ Arduino UNO (or compatible)!
 A small moving object (like a toy car or ball)
 ⚙️ Setup Diagram Block Diagram: (Please note: The image for the block diagram is not directly embeddable here. You would typically link to it or include it as a separate image asset in your project.)
 💬 Why This Is Cool Helps understand real-world physics with sensors`,
-      imageUrl: `/images/traffic-speed-detection.png`, // Corrected to use relative path directly
+      imageUrl: `${process.env.PUBLIC_URL}/images/traffic-speed-detection.png`, // Corrected to use relative path directly
       projectLink: 'https://github.com/ullas9525/Traffic_Speed_Detection',
     },
     {
@@ -292,7 +292,7 @@ A small moving object (like a toy car or ball)
       title: 'Smart Irrigation System',
       description: 'An intelligent irrigation system optimizing water usage based on real-time data.',
       fullDescription: "An automated irrigation system designed to optimize water usage in farming. It leverages sensors to monitor soil moisture, temperature, and humidity, and then intelligently controls irrigation based on real-time data and weather forecasts. This system aims to conserve water, reduce manual labor, and improve crop yield.",
-      imageUrl: `/images/smart-irrigation.png`, // Corrected to use relative path directly
+      imageUrl: `${process.env.PUBLIC_URL}/images/smart-irrigation.png`, // Corrected to use relative path directly
       projectLink: 'https://github.com/ullas9525/Smart_Irrigation_System',
     },
     {
