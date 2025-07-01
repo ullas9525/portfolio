@@ -33,15 +33,15 @@ const Header = () => {
         <a className="nav-link text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#contact">Contact</a>
       </nav>
       <div className="flex items-center gap-4">
-        {/* Profile photo for mobile, acts as menu toggle. Hidden on small screens and up. */}
+        {/* Replaced menu icon with profile photo for mobile, keeping menu functionality */}
         <button
-          className="flex sm:hidden cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cover bg-center bg-no-repeat border-2 border-[var(--primary-color)]"
+          className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cover bg-center bg-no-repeat border-2 border-[var(--primary-color)] md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           style={{ backgroundImage: `url('images/my-photo.png')` }}
           aria-label="Toggle navigation menu"
         >
         </button>
-        {/* Profile photo for larger screens, hidden on extra-small screens and visible from small screens up. */}
+        {/* Profile photo for larger screens, now always visible */}
         <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--primary-color)] hidden sm:block" style={{ backgroundImage: `url('images/my-photo.png')` }}></div>
       </div>
       {isMenuOpen && (
@@ -229,7 +229,7 @@ The system is optimized with LEDs and sensors, keeping it simple and effective.
 
 🕒 App-Scheduled Alerts for pill times
 🔦 LED Indicators show the correct pill compartment
-� 6 IR Sensors track compartment access
+👀 6 IR Sensors track compartment access
 🔊 Buzzer alerts on schedule or wrong pill attempt
 🧠 Smart Detection Logic to reduce human error
 🧩 Fully Arduino-based
