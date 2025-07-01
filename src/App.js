@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
 
-// Reusable SVG for the logo (kept as SVG for consistency with original HTML)
+// Reusable SVG for the logo (reverted to previous version as requested)
 const LogoSVG = () => (
   <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
     <g clipPath="url(#clip0_6_535)">
@@ -33,15 +33,16 @@ const Header = () => {
         <a className="nav-link text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#contact">Contact</a>
       </nav>
       <div className="flex items-center gap-4">
+        {/* Replaced menu icon with profile photo for mobile, keeping menu functionality */}
         <button
-          className="md:hidden flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[var(--accent-color)] text-[var(--text-primary)] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+          className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cover bg-center bg-no-repeat border-2 border-[var(--primary-color)] md:hidden"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
+          style={{ backgroundImage: `url('images/my-photo.png')` }}
+          aria-label="Toggle navigation menu"
         >
-          <div className="text-[var(--text-primary)]" data-icon="List" data-size="20px" data-weight="regular">
-            <List size={20} /> {/* Using Lucide React List icon */}
-          </div>
         </button>
-        <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--primary-color)] hidden sm:block" style={{ backgroundImage: `url('images/my-photo.png')` }}></div> {/* Updated profile photo to use relative path */}
+        {/* Profile photo for larger screens, now always visible */}
+        <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--primary-color)] hidden sm:block" style={{ backgroundImage: `url('images/my-photo.png')` }}></div>
       </div>
       {isMenuOpen && (
         <nav className="absolute top-full left-0 w-full bg-[var(--secondary-color)]/90 backdrop-blur-md flex flex-col items-center py-4 md:hidden">
@@ -253,7 +254,7 @@ System resets and waits for the next dose.
 💡 The system uses 6 IR sensors aligned with 6 compartments.
 On scheduled time (via app), Arduino powers the correct LED.
 IR checks which compartment is opened and triggers alerts accordingly.
-Circuit Diagram: (Please note: The image for the circuit diagram is not directly embeddable here. You would typically link to it or include it as a separate image asset in your project.)
+Circuit Diagram: (Please note: the image for the circuit diagram is not directly embeddable here. You would typically link to it or include it as a separate image asset in your project.)
 
 🔮 Future Improvements
 
@@ -282,7 +283,7 @@ Speed = (Distance / Time) × 3.6
 Arduino UNO (or compatible)!
 2x IR Sensor Modules Breadboard + Jumper Wires USB Cable (for power & programming)
 A small moving object (like a toy car or ball)
-⚙️ Setup Diagram Block Diagram: (Please note: The image for the block diagram is not directly embeddable here. You would typically link to it or include it as a separate image asset in your project.)
+⚙️ Setup Diagram Block Diagram: (Please note: the image for the block diagram is not directly embeddable here. You would typically link to it or include it as a separate image asset in your project.)
 💬 Why This Is Cool Helps understand real-world physics with sensors`,
       imageUrl: `images/traffic-speed-detection.png`, // Corrected to use relative path directly
       projectLink: 'https://github.com/ullas9525/Traffic_Speed_Detection',
@@ -300,7 +301,7 @@ A small moving object (like a toy car or ball)
       title: 'Python Mini-Games',
       description: 'A collection of fun and engaging mini-games developed using Python.',
       fullDescription: "A collection of classic and original mini-games developed using Python. This repository showcases various game development concepts, including user input handling, game logic, scoring, and simple graphics, providing an entertaining and educational experience.",
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWHUoy3_9DG1Vf5rjJRL7jd0KNwDXKl-jhtfgW3jSU1p4ZCfB89muLI4Qsj4WrYPZtzmymmoVKXoANNb49Tz84x4RF8kjGuoEFiv9zWlWmYkHwCvKvz_J0g396KQ3xVSD67JHS135zEwF7Rn6BlraM7S4NZcPspVc18hX4Ss_Bd5OfZ3ywZbUoBEoW0_DoQr6rOqQaZoThqd0kPGQ16mmoO2lb0JdIykJHweotKHnehfTwShDQaOqYHo9mnckFYTd9LKOtunlFf-Kg',
+      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWHUoy3_9DG1Vf5rjJRL7jd0KNwDXKl-jhtfgW3jSU1p4ZCfB89muLI4Qsj4WrYPZtzmymmoVKXoANNb49Tz84x4RF8kjGuoFv9zWlWmYkHwCvKvz_J0g396KQ3xVSD67JHS135zEwF7Rn6BlraM7S4NZcPspVc18hX4Ss_Bd5OfZ3ywZbUoBEoW0_DoQr6rOqQaZoThqd0kPGQ16mmoO2lb0JdIykJHweotKHnehfTwShDQaOqYHo9mnckFYTd9LKOtunlFf-Kg',
       projectLink: 'https://github.com/ullas9525/WordGame',
     },
   ];
