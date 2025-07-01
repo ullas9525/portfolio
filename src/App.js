@@ -12,7 +12,6 @@ const LogoSVG = () => (
     </defs>
   </svg>
 );
-
 // Header Component
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -33,15 +32,15 @@ const Header = () => {
         <a className="nav-link text-[var(--text-secondary)] hover:text-[var(--primary-color)] text-sm font-medium leading-normal transition-colors" href="#contact">Contact</a>
       </nav>
       <div className="flex items-center gap-4">
-        {/* Replaced menu icon with profile photo for mobile, keeping menu functionality */}
+        {/* Profile photo for mobile, acts as menu toggle. Hidden on small screens and up. */}
         <button
-          className="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cover bg-center bg-no-repeat border-2 border-[var(--primary-color)] md:hidden"
+          className="flex sm:hidden cursor-pointer items-center justify-center overflow-hidden rounded-full h-10 w-10 bg-cover bg-center bg-no-repeat border-2 border-[var(--primary-color)]"
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           style={{ backgroundImage: `url('images/my-photo.png')` }}
           aria-label="Toggle navigation menu"
         >
         </button>
-        {/* Profile photo for larger screens, now always visible */}
+        {/* Profile photo for larger screens, hidden on extra-small screens and visible from small screens up. */}
         <div className="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10 border-2 border-[var(--primary-color)] hidden sm:block" style={{ backgroundImage: `url('images/my-photo.png')` }}></div>
       </div>
       {isMenuOpen && (
@@ -301,7 +300,7 @@ A small moving object (like a toy car or ball)
       title: 'Python Mini-Games',
       description: 'A collection of fun and engaging mini-games developed using Python.',
       fullDescription: "A collection of classic and original mini-games developed using Python. This repository showcases various game development concepts, including user input handling, game logic, scoring, and simple graphics, providing an entertaining and educational experience.",
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDWHUoy3_9DG1Vf5rjJRL7jd0KNwDXKl-jhtfgW3jSU1p4ZCfB89muLI4Qsj4WrYPZtzmymmoVKXoANNb49Tz84x4RF8kjGuoFv9zWlWmYkHwCvKvz_J0g396KQ3xVSD67JHS135zEwF7Rn6BlraM7S4NZcPspVc18hX4Ss_Bd5OfZ3ywZbUoBEoW0_DoQr6rOqQaZoThqd0kPGQ16mmoO2lb0JdIykJHweotKHnehfTwShDQaOqYHo9mnckFYTd9LKOtunlFf-Kg',
+      imageUrl: `images/games.png`, // Updated to use the new local image path
       projectLink: 'https://github.com/ullas9525/WordGame',
     },
   ];
