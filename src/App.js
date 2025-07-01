@@ -267,7 +267,7 @@ Circuit Diagram: (Please note: the image for the circuit diagram is not directly
 🧠 Alzheimer’s or dementia patients
 🏥 Clinics and care centers
 📚 Academic embedded system projects`,
-      imageUrl: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDjvhJCHQNa14TlRFwssxzEFZ2Lbs3jXIOZGahbBFk9RkUlzCNBeXWYb9fVJjJG8wMUMqDF_FsQbdoXKQKCBGJKuPRQzQnAjZ9XOCDYNu1BaqPRJAU3DIgX1VIuRivE3Gx3j7a92a5XoNiFlH_sTFxGjEqixL7Qta_XFzEoQluWrUfPD56JxBO9KFBFpTrxUsn35NsWmy0xoCB76gnwSS9WPHvNaM2gSt3sQIKqi1wdsrIIZwVD4-b-uIcmPa2oyQ4AER0Bd6RxHhOi',
+      imageUrl: `images/pilldoze.png`, // Updated to use the new local image path
       projectLink: 'https://github.com/ullas9525/PillDoze/tree/main',
     },
     {
