@@ -183,7 +183,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
 // Project Card Component
 const ProjectCard = ({ category, title, description, imageUrl, projectLink, onViewProject }) => (
   <div
-    className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl hover:bg-[var(--primary-color)] transition-all duration-300 cursor-pointer"
+    className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl hover:bg-[var(--primary-color)] transition-all duration-300 cursor-pointer transform hover:scale-105" /* Added transform hover:scale-105 */
     onClick={onViewProject} // Make the entire card clickable
   >
     <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${imageUrl}")` }}></div>
@@ -220,7 +220,7 @@ The system is optimized with LEDs and sensors, keeping it simple and effective.
 
 🕒 App-Scheduled Alerts for pill times
 🔦 LED Indicators show the correct pill compartment
-� 6 IR Sensors track compartment access
+👀 6 IR Sensors track compartment access
 🔊 Buzzer alerts on schedule or wrong pill attempt
 🧠 Smart Detection Logic to reduce human error
 🧩 Fully Arduino-based
