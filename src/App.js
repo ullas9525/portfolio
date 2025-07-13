@@ -351,13 +351,13 @@ const ResumeSection = () => {
 const ContactSection = () => (
   <section className="scroll-mt-20" id="contact">
     <h2 className="text-[var(--text-primary)] text-3xl font-bold leading-tight tracking-tight px-4 pb-4 pt-5">Contact</h2>
-    <div className="flex flex-col sm:flex-row gap-4 px-4 py-3 items-center"> {/* Added items-center here */}
+    <div className="flex flex-col sm:flex-row gap-4 px-4 py-3 sm:justify-start"> {/* Removed items-center, changed to sm:justify-start */}
       <a
         href="https://github.com/ullas9525"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
+        className="flex w-fit sm:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Removed mx-auto, adjusted width for mobile and desktop */}
         <Github size={20} /> {/* GitHub Icon */}
         <span className="truncate">GitHub</span>
       </a>
@@ -365,8 +365,8 @@ const ContactSection = () => (
         href="https://www.linkedin.com/in/ullas-b-r-624a29294/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
+        className="flex w-fit sm:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Removed mx-auto, adjusted width for mobile and desktop */}
         <Linkedin size={20} /> {/* LinkedIn Icon */}
         <span className="truncate">LinkedIn</span>
       </a>
@@ -374,8 +374,8 @@ const ContactSection = () => (
         href="https://www.instagram.com/ullas_br2005/" // Updated Instagram link
         target="_blank"
         rel="noopener noreferrer"
-        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
+        className="flex w-fit sm:w-auto cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Removed mx-auto, adjusted width for mobile and desktop */}
         <Instagram size={20} /> {/* Instagram Icon */}
         <span className="truncate">Instagram</span>
       </a>
