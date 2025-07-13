@@ -1,81 +1,19 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
 
-// Logo component
+// Logo component updated to use the new image
 const LogoSVG = () => (
-  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-8" />
+  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-10" />
 );
-
-// ScrollReveal Component for animations
-const ScrollReveal = ({
-  children,
-  baseOpacity = 0,
-  enableBlur = false,
-  baseRotation = 0,
-  blurStrength = 0,
-  transitionDuration = '0.7s',
-  transitionDelay = '0s',
-  threshold = 0.1, // Percentage of element visible to trigger
-  className = '', // Added className prop to pass Tailwind classes
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // Optionally unobserve after it becomes visible if animation should only run once
-            // observer.unobserve(entry.target);
-          } else {
-            // Optionally reset visibility if animation should repeat on scroll out/in
-            // setIsVisible(false);
-          }
-        });
-      },
-      {
-        threshold: threshold,
-      }
-    );
-
-    const currentRef = domRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [threshold]);
-
-  const style = {
-    opacity: isVisible ? 1 : baseOpacity,
-    filter: isVisible ? 'blur(0px)' : (enableBlur ? `blur(${blurStrength}px)` : 'none'),
-    transform: isVisible ? 'rotate(0deg) translateY(0)' : `rotate(${baseRotation}deg) translateY(20px)`, // Added translateY for subtle vertical slide
-    transition: `opacity ${transitionDuration} ${transitionDelay}, filter ${transitionDuration} ${transitionDelay}, transform ${transitionDuration} ${transitionDelay}`,
-    willChange: 'opacity, filter, transform', // Optimize for animation performance
-  };
-
-  return (
-    <div ref={domRef} style={style} className={className}> {/* Apply className here */}
-      {children}
-    </div>
-  );
-};
-
 
 // Header Component
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4"> {/* Removed whitespace-nowrap */}
+    <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4">
       <div className="flex items-center gap-3 text-[var(--text-primary)]">
-        <div className="size-8"> {/* Changed size-10 to size-8 */}
+        <div className="size-10"> {/* Changed size-8 to size-10 */}
           <LogoSVG />
         </div>
         <h2 className="text-xl font-bold leading-tight tracking-[-0.015em]">Ullas B R</h2>
@@ -251,9 +189,8 @@ const ProjectCard = ({ category, title, description, imageUrl, projectLink, onVi
     <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${imageUrl}")` }}></div>
     <div className="flex flex-col gap-2">
       <p className="text-[var(--primary-color)] text-sm font-semibold leading-normal">{category}</p>
-      {/* Ensure text wraps by removing whitespace-nowrap if it was implicitly applied */}
-      <p className="text-[var(--text-primary)] text-xl font-bold leading-tight break-words">{title}</p>
-      <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed break-words">{description}</p>
+      <p className="text-[var(--text-primary)] text-xl font-bold leading-tight">{title}</p>
+      <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed">{description}</p>
     </div>
     {/* Removed the "View Project" button */}
   </div>
@@ -363,8 +300,7 @@ A small moving object (like a toy car or ball)
   return (
     <section className="scroll-mt-20" id="projects">
       <h2 className="text-[var(--text-primary)] text-3xl font-bold leading-tight tracking-tight px-4 pb-6 pt-5">Projects</h2>
-      {/* Adjusted grid columns for better responsiveness and to prevent overlap */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
@@ -465,24 +401,14 @@ const App = () => {
         <div className="layout-container flex h-full grow flex-col">
           <Header />
           <main className="px-6 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
-            <ScrollReveal className="w-full"> {/* Added w-full */}
+            <div className="layout-content-container flex flex-col max-w-[960px] flex-1 gap-12 sm:gap-16">
               <HeroSection />
-            </ScrollReveal>
-            <ScrollReveal className="w-full" transitionDelay="0.1s"> {/* Added w-full */}
               <AboutSection />
-            </ScrollReveal>
-            <ScrollReveal className="w-full" transitionDelay="0.2s"> {/* Added w-full */}
               <SkillsSection />
-            </ScrollReveal>
-            <ScrollReveal className="w-full" transitionDelay="0.3s"> {/* Added w-full */}
               <ProjectsSection />
-            </ScrollReveal>
-            <ScrollReveal className="w-full" transitionDelay="0.4s"> {/* Added w-full */}
               <ResumeSection />
-            </ScrollReveal>
-            <ScrollReveal className="w-full" transitionDelay="0.5s"> {/* Added w-full */}
               <ContactSection />
-            </ScrollReveal>
+            </div>
           </main>
           <Footer />
         </div>
