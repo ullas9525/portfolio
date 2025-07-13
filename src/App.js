@@ -3,7 +3,7 @@ import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Im
 
 // Logo component updated to use the new image
 const LogoSVG = () => (
-  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-5" />
+  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-8" />
 );
 
 // Header Component
@@ -13,7 +13,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4">
       <div className="flex items-center gap-3 text-[var(--text-primary)]">
-        <div className="size-5">
+        <div className="size-8"> {/* Changed size-5 to size-8 */}
           <LogoSVG />
         </div>
         <h2 className="text-xl font-bold leading-tight tracking-[-0.015em]">Ullas B R</h2>
