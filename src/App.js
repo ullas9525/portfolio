@@ -188,19 +188,17 @@ const ProjectDetailModal = ({ project, onClose }) => {
 
 // Project Card Component
 const ProjectCard = ({ category, title, description, imageUrl, projectLink, onViewProject }) => (
-  <div className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300">
+  <div
+    className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+    onClick={onViewProject} // Make the entire card clickable
+  >
     <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${imageUrl}")` }}></div>
     <div className="flex flex-col gap-2">
       <p className="text-[var(--primary-color)] text-sm font-semibold leading-normal">{category}</p>
       <p className="text-[var(--text-primary)] text-xl font-bold leading-tight">{title}</p>
       <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed">{description}</p>
     </div>
-    <button
-      onClick={onViewProject} // Call onViewProject when button is clicked
-      className="mt-auto flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-5 bg-[var(--primary-color)] text-[var(--text-primary)] text-sm font-bold leading-normal w-fit hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105"
-    >
-      <span className="truncate">View Project</span>
-    </button>
+    {/* Removed the "View Project" button */}
   </div>
 );
 
