@@ -183,7 +183,7 @@ const ProjectDetailModal = ({ project, onClose }) => {
 // Project Card Component
 const ProjectCard = ({ category, title, description, imageUrl, projectLink, onViewProject }) => (
   <div
-    className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer"
+    className="flex flex-col items-stretch justify-between gap-4 rounded-xl bg-[var(--accent-color)] p-6 shadow-lg hover:shadow-2xl hover:bg-[var(--primary-color)] transition-all duration-300 cursor-pointer"
     onClick={onViewProject} // Make the entire card clickable
   >
     <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${imageUrl}")` }}></div>
