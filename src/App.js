@@ -62,7 +62,7 @@ const HeroSection = () => (
           <h2 className="gradient-text text-lg font-semibold leading-normal @[480px]:text-xl">
             Web Developer 🚀 exploring the edge where Frontend meets AI
           </h2>
-          <p className="text-[var(--text-secondary)] text-base @[480px]:text-lg font-normal leading-relaxed max-w-xl">
+          <p className="text-[var(--text-primary)] text-base @[480px]:text-lg font-normal leading-relaxed max-w-xl">
             Yo! I’m Ullas — a code-crafting student who's building intelligent web stuff, sleek Flutter apps, and quirky Python games.
           </p>
         </div>
@@ -78,7 +78,7 @@ const HeroSection = () => (
 const AboutSection = () => (
   <section className="scroll-mt-20" id="about">
     <h2 className="text-[var(--text-primary)] text-3xl font-bold leading-tight tracking-tight px-4 pb-4 pt-5">About Me</h2>
-    <p className="text-[var(--text-secondary)] text-lg font-normal leading-relaxed pb-3 pt-1 px-4">
+    <p className="text-[var(--text-primary)] text-lg font-normal leading-relaxed pb-3 pt-1 px-4">
       I’m a passionate student with a developer mindset, always eager to learn and create. My journey in web development has been an exciting blend of frontend aesthetics and backend logic, with a growing interest in AI integration. I also enjoy building cross-platform apps with Flutter and experimenting with Python for game development. Let's build something amazing together!
     </p>
   </section>
@@ -155,14 +155,14 @@ const ProjectDetailModal = ({ project, onClose }) => {
       <div className="bg-[var(--secondary-color)] rounded-lg p-6 max-w-2xl w-full max-h-[90vh] overflow-y-auto relative">
         <button
           onClick={onClose}
-          className="absolute top-3 right-3 text-[var(--text-secondary)] hover:text-[var(--primary-color)] transition-colors"
+          className="absolute top-3 right-3 text-[var(--text-primary)] hover:text-[var(--primary-color)] transition-colors"
           aria-label="Close project details"
         >
           <X size={24} />
         </button>
         <h3 className="text-[var(--text-primary)] text-2xl font-bold mb-4">{project.title}</h3>
         <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${project.imageUrl}")` }}></div>
-        <p className="text-[var(--text-secondary)] text-base leading-relaxed mb-6 whitespace-pre-wrap">{project.fullDescription}</p>
+        <p className="text-[var(--text-primary)] text-base leading-relaxed mb-6 whitespace-pre-wrap">{project.fullDescription}</p>
         {project.projectLink && (
           <a
             href={project.projectLink}
@@ -190,7 +190,7 @@ const ProjectCard = ({ category, title, description, imageUrl, projectLink, onVi
     <div className="flex flex-col gap-2">
       <p className="text-[var(--primary-color)] text-sm font-semibold leading-normal">{category}</p>
       <p className="text-[var(--text-primary)] text-xl font-bold leading-tight break-words">{title}</p>
-      <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed break-words">{description}</p>
+      <p className="text-[var(--text-primary)] text-base font-normal leading-relaxed break-words">{description}</p>
     </div>
     {/* Removed the "View Project" button */}
   </div>
@@ -220,7 +220,7 @@ The system is optimized with LEDs and sensors, keeping it simple and effective.
 
 🕒 App-Scheduled Alerts for pill times
 🔦 LED Indicators show the correct pill compartment
-👀 6 IR Sensors track compartment access
+� 6 IR Sensors track compartment access
 🔊 Buzzer alerts on schedule or wrong pill attempt
 🧠 Smart Detection Logic to reduce human error
 🧩 Fully Arduino-based
@@ -380,7 +380,7 @@ const ContactSection = () => (
         <span className="truncate">Instagram</span>
       </a>
     </div>
-    <p className="text-[var(--text-secondary)] text-lg font-normal leading-relaxed pb-3 pt-1 px-4">
+    <p className="text-[var(--text-primary)] text-lg font-normal leading-relaxed pb-3 pt-1 px-4">
       Email: <a className="text-[var(--primary-color)] hover:underline" href="mailto:ullasbr.2005@gmail.com">ullasbr.2005@gmail.com</a>
     </p>
   </section>
@@ -389,7 +389,7 @@ const ContactSection = () => (
 // Footer Component
 const Footer = () => (
   <footer className="text-center py-8 border-t border-[var(--border-color)]">
-    <p className="text-[var(--text-secondary)] text-sm">© 2025 Ullas B R. All rights reserved.</p>
+    <p className="text-[var(--text-primary)] text-sm">© 2025 Ullas B R. All rights reserved.</p>
   </footer>
 );
 
