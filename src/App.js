@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
 
-// Logo component updated to use the new image
+// Logo component
 const LogoSVG = () => (
-  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-10" />
+  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-8" />
 );
 
 // Header Component
@@ -11,9 +11,9 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4">
+    <header className="sticky top-0 z-50 flex items-center justify-between border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4">
       <div className="flex items-center gap-3 text-[var(--text-primary)]">
-        <div className="size-10"> {/* Changed size-8 to size-10 */}
+        <div className="size-8">
           <LogoSVG />
         </div>
         <h2 className="text-xl font-bold leading-tight tracking-[-0.015em]">Ullas B R</h2>
@@ -189,8 +189,8 @@ const ProjectCard = ({ category, title, description, imageUrl, projectLink, onVi
     <div className="w-full bg-center bg-no-repeat aspect-video bg-cover rounded-lg mb-4" style={{ backgroundImage: `url("${imageUrl}")` }}></div>
     <div className="flex flex-col gap-2">
       <p className="text-[var(--primary-color)] text-sm font-semibold leading-normal">{category}</p>
-      <p className="text-[var(--text-primary)] text-xl font-bold leading-tight">{title}</p>
-      <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed">{description}</p>
+      <p className="text-[var(--text-primary)] text-xl font-bold leading-tight break-words">{title}</p>
+      <p className="text-[var(--text-secondary)] text-base font-normal leading-relaxed break-words">{description}</p>
     </div>
     {/* Removed the "View Project" button */}
   </div>
@@ -300,7 +300,7 @@ A small moving object (like a toy car or ball)
   return (
     <section className="scroll-mt-20" id="projects">
       <h2 className="text-[var(--text-primary)] text-3xl font-bold leading-tight tracking-tight px-4 pb-6 pt-5">Projects</h2>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 p-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">
         {projects.map((project, index) => (
           <ProjectCard
             key={index}
@@ -351,13 +351,13 @@ const ResumeSection = () => {
 const ContactSection = () => (
   <section className="scroll-mt-20" id="contact">
     <h2 className="text-[var(--text-primary)] text-3xl font-bold leading-tight tracking-tight px-4 pb-4 pt-5">Contact</h2>
-    <div className="flex flex-col sm:flex-row gap-4 px-4 py-3">
+    <div className="flex flex-col sm:flex-row gap-4 px-4 py-3 items-center"> {/* Added items-center here */}
       <a
         href="https://github.com/ullas9525"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-1 sm:flex-none min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      >
+        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
         <Github size={20} /> {/* GitHub Icon */}
         <span className="truncate">GitHub</span>
       </a>
@@ -365,8 +365,8 @@ const ContactSection = () => (
         href="https://www.linkedin.com/in/ullas-b-r-624a29294/"
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-1 sm:flex-none min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      >
+        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
         <Linkedin size={20} /> {/* LinkedIn Icon */}
         <span className="truncate">LinkedIn</span>
       </a>
@@ -374,8 +374,8 @@ const ContactSection = () => (
         href="https://www.instagram.com/ullas_br2005/" // Updated Instagram link
         target="_blank"
         rel="noopener noreferrer"
-        className="flex flex-1 sm:flex-none min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
-      >
+        className="flex w-fit mx-auto sm:flex-none min-w-[84px] max-w-[200px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105 gap-2"
+      > {/* Changed flex-1 to w-fit mx-auto and max-w-[480px] to max-w-[200px] */}
         <Instagram size={20} /> {/* Instagram Icon */}
         <span className="truncate">Instagram</span>
       </a>
