@@ -1,71 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
 
-// Logo component
+// Logo component updated to use the new image
 const LogoSVG = () => (
   <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-10" />
 );
-
-// ScrollReveal Component for animations
-const ScrollReveal = ({
-  children,
-  baseOpacity = 0,
-  enableBlur = false,
-  baseRotation = 0,
-  blurStrength = 0,
-  transitionDuration = '0.7s',
-  transitionDelay = '0s',
-  threshold = 0.1, // Percentage of element visible to trigger
-}) => {
-  const [isVisible, setIsVisible] = useState(false);
-  const domRef = useRef();
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setIsVisible(true);
-            // Optionally unobserve after it becomes visible if animation should only run once
-            // observer.unobserve(entry.target);
-          } else {
-            // Optionally reset visibility if animation should repeat on scroll out/in
-            // setIsVisible(false);
-          }
-        });
-      },
-      {
-        threshold: threshold,
-      }
-    );
-
-    const currentRef = domRef.current;
-    if (currentRef) {
-      observer.observe(currentRef);
-    }
-
-    return () => {
-      if (currentRef) {
-        observer.unobserve(currentRef);
-      }
-    };
-  }, [threshold]);
-
-  const style = {
-    opacity: isVisible ? 1 : baseOpacity,
-    filter: isVisible ? 'blur(0px)' : (enableBlur ? `blur(${blurStrength}px)` : 'none'),
-    transform: isVisible ? 'rotate(0deg) translateY(0)' : `rotate(${baseRotation}deg) translateY(20px)`, // Added translateY for subtle vertical slide
-    transition: `opacity ${transitionDuration} ${transitionDelay}, filter ${transitionDuration} ${transitionDelay}, transform ${transitionDuration} ${transitionDelay}`,
-    willChange: 'opacity, filter, transform', // Optimize for animation performance
-  };
-
-  return (
-    <div ref={domRef} style={style}>
-      {children}
-    </div>
-  );
-};
-
 
 // Header Component
 const Header = () => {
@@ -74,7 +13,7 @@ const Header = () => {
   return (
     <header className="sticky top-0 z-50 flex items-center justify-between whitespace-nowrap border-b border-solid border-[var(--border-color)]] bg-[var(--secondary-color)]/80 backdrop-blur-md px-6 sm:px-10 py-4">
       <div className="flex items-center gap-3 text-[var(--text-primary)]">
-        <div className="size-10">
+        <div className="size-10"> {/* Changed size-8 to size-10 */}
           <LogoSVG />
         </div>
         <h2 className="text-xl font-bold leading-tight tracking-[-0.015em]">Ullas B R</h2>
@@ -462,24 +401,14 @@ const App = () => {
         <div className="layout-container flex h-full grow flex-col">
           <Header />
           <main className="px-6 sm:px-10 md:px-20 lg:px-40 flex flex-1 justify-center py-10">
-            <ScrollReveal> {/* Wrap Hero Section with ScrollReveal */}
+            <div className="layout-content-container flex flex-col max-w-[960px] flex-1 gap-12 sm:gap-16">
               <HeroSection />
-            </ScrollReveal>
-            <ScrollReveal transitionDelay="0.1s"> {/* Wrap About Section with ScrollReveal */}
               <AboutSection />
-            </ScrollReveal>
-            <ScrollReveal transitionDelay="0.2s"> {/* Wrap Skills Section with ScrollReveal */}
               <SkillsSection />
-            </ScrollReveal>
-            <ScrollReveal transitionDelay="0.3s"> {/* Wrap Projects Section with ScrollReveal */}
               <ProjectsSection />
-            </ScrollReveal>
-            <ScrollReveal transitionDelay="0.4s"> {/* Wrap Resume Section with ScrollReveal */}
               <ResumeSection />
-            </ScrollReveal>
-            <ScrollReveal transitionDelay="0.5s"> {/* Wrap Contact Section with ScrollReveal */}
               <ContactSection />
-            </ScrollReveal>
+            </div>
           </main>
           <Footer />
         </div>
