@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
 
-// Reusable SVG for the logo (reverted to previous version as requested)
+// Logo component updated to use the new image
 const LogoSVG = () => (
-  <svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-    <g clipPath="url(#clip0_6_535)">
-      <path clipRule="evenodd" d="M47.2426 24L24 47.2426L0.757355 24L24 0.757355L47.2426 24ZM12.2426 21H35.7574L24 9.24264L12.2426 21Z" fill="currentColor" fillRule="evenodd"></path>
-    </g>
-    <defs>
-      <clipPath id="clip0_6_535"><rect fill="white" height="48" width="48"></rect></clipPath>
-    </defs>
-  </svg>
+  <img src="images/ChatGPT_Image_Jul_13__2025__06_17_13_PM-removebg-preview.png" alt="Ullas B R Logo" className="size-5" />
 );
+
 // Header Component
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
