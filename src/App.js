@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Github, Linkedin, Instagram, List, Code, X } from 'lucide-react'; // Import X for close icon
+import React, { useState } from 'react';
+import { Github, Linkedin, Instagram, Code, X } from 'lucide-react'; // Import X for close icon
 
 // Logo component
 const LogoSVG = () => (
@@ -343,7 +343,7 @@ const ResumeSection = () => {
       <div className="flex flex-col items-start px-4 py-3">
         <button
           onClick={handleDownloadClick}
-          className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--primary-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-opacity-80 transition-all duration-300 transform hover:scale-105"
+          className="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-6 bg-[var(--accent-color)] text-[var(--text-primary)] text-base font-bold leading-normal tracking-[0.015em] hover:bg-[var(--primary-color)] transition-all duration-300 transform hover:scale-105"
         >
           <span className="truncate">Download Resume</span>
         </button>
