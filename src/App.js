@@ -295,6 +295,14 @@ A small moving object (like a toy car or ball)
       imageUrl: `images/games.png`, // Updated to use the new local image path
       projectLink: 'https://github.com/ullas9525/WordGame',
     },
+    {
+  category: 'AI-Powered Apps',
+  title: 'Dictation App',
+  description: 'A smart voice notes app that uses AI to transcribe, clean, and format spoken ideas into structured notes.',
+  fullDescription: "A sophisticated voice notes application built with Flutter that leverages the Google Gemini API to process audio recordings. The app features a live waveform visualizer, pause/resume functionality, and robust state management using the Provider package. After recording, it processes the audio to generate three distinct outputs: a raw transcript, a cleaned-up version, and a polished, well-structured note formatted with Markdown. The app also includes theme persistence (light/dark mode) and a settings panel for API key management.",
+  imageUrl: `images/Dictation_App.png`,
+  projectLink: 'https://github.com/ullas9525/Dictation_App',
+},
   ];
 
   return (
