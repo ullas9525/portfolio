@@ -1,0 +1,164 @@
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-stage {
+  position: relative;
+  min-height: 700px;
+  overflow: hidden;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+}
+.contact-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+.contact-inner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 40px;
+  padding: 56px 48px;
+}
+.contact-h2 {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 700;
+  margin: 12px 0;
+}
+.contact-copy {
+  color: var(--text-2);
+  max-width: 420px;
+  margin-bottom: 26px;
+}
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact-line {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  color: var(--text-2);
+  font-size: 0.92rem;
+  transition: all 0.22s ease;
+}
+.contact-line:hover {
+  border-color: var(--accent);
+  color: var(--text);
+  transform: translateX(5px);
+}
+.contact-line svg {
+  color: var(--accent);
+  font-size: 1.15rem;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.contact-form label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-sm);
+  padding: 13px 16px;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: border-color 0.22s ease, box-shadow 0.22s ease;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(34, 211, 238, 0.12);
+}
+.contact-form textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+.form-note {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-3);
+}
+.form-success {
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(52, 211, 153, 0.08);
+  color: var(--accent-3);
+  padding: 14px 16px;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+@media (max-width: 900px) {
+  .contact-inner {
+    grid-template-columns: 1fr;
+    padding: 36px 22px;
+  }
+  .contact-stage {
+    min-height: auto;
+  }
+}
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--line);
+  padding: 36px 0;
+  margin-top: 40px;
+}
+.footer-inner {
+  max-width: var(--maxw);
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.footer p {
+  color: var(--text-3);
+  font-size: 0.85rem;
+}
+.footer .mono {
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+}
+.footer .heart {
+  color: #f472b6;
+}
+
+/* ============================================================
+   GENERIC SCENE CANVAS
+   ============================================================ */
+.scene-canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scene-canvas {
+    display: none !important;
+  }
+}

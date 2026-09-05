@@ -1,0 +1,132 @@
+/* ============================================================
+   ACHIEVEMENTS
+   ============================================================ */
+.ach-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 16px;
+}
+.ach-card {
+  position: relative;
+  padding: 24px;
+  overflow: hidden;
+  transition: transform 0.25s ease, border-color 0.25s ease;
+}
+.ach-card:hover {
+  transform: translateY(-5px);
+  border-color: rgba(34, 211, 238, 0.35);
+}
+.ach-card::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  right: -90px;
+  top: -90px;
+  border-radius: 50%;
+  background: radial-gradient(circle, var(--ach-glow, rgba(34, 211, 238, 0.14)), transparent 70%);
+  pointer-events: none;
+}
+.ach-icon {
+  width: 46px;
+  height: 46px;
+  border-radius: 13px;
+  display: grid;
+  place-items: center;
+  font-size: 1.25rem;
+  color: var(--accent);
+  background: rgba(34, 211, 238, 0.1);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  margin-bottom: 16px;
+}
+.ach-card h4 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.ach-card p {
+  color: var(--text-2);
+  font-size: 0.9rem;
+}
+.ach-tag {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  border: 1px solid var(--line);
+  padding: 4px 9px;
+  border-radius: 999px;
+}
+.ach-github-link {
+  margin-top: 26px;
+}
+
+/* ============================================================
+   RESUME
+   ============================================================ */
+.resume-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: stretch;
+}
+.resume-card {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.resume-card h3 {
+  font-size: 1.3rem;
+  margin-bottom: 12px;
+}
+.resume-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  flex: 1;
+}
+.resume-list li {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  color: var(--text-2);
+  font-size: 0.94rem;
+}
+.resume-list li svg {
+  color: var(--accent);
+  margin-top: 3px;
+  flex: 0 0 auto;
+}
+.resume-cta {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+  padding: 40px 30px;
+}
+.resume-cta h3 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+}
+.resume-cta p {
+  color: var(--text-2);
+  max-width: 420px;
+}
+.resume-buttons {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+@media (max-width: 900px) {
+  .resume-wrap {
+    grid-template-columns: 1fr;
+  }
+}

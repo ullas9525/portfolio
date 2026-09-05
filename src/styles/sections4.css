@@ -1,0 +1,194 @@
+/* ============================================================
+   IOT
+   ============================================================ */
+.iot-wrap {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 44px;
+  align-items: center;
+}
+.iot-stage {
+  position: relative;
+  height: 560px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: radial-gradient(500px 450px at 50% 40%, rgba(251, 191, 36, 0.06), transparent 70%);
+}
+.iot-items {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.iot-item {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  padding: 13px 15px;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  font-size: 0.9rem;
+  color: var(--text-2);
+  transition: all 0.2s ease;
+}
+.iot-item svg {
+  color: #fbbf24;
+  font-size: 1.1rem;
+}
+.iot-item:hover {
+  border-color: rgba(251, 191, 36, 0.4);
+  color: var(--text);
+  transform: translateY(-3px);
+}
+.iot-note {
+  margin-top: 18px;
+  color: var(--text-2);
+  font-size: 0.92rem;
+  border-left: 3px solid #fbbf24;
+  padding-left: 14px;
+}
+
+@media (max-width: 900px) {
+  .iot-wrap {
+    grid-template-columns: 1fr;
+  }
+  .iot-stage {
+    height: 380px;
+  }
+  .iot-items {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ============================================================
+   DSA / PROBLEM SOLVING
+   ============================================================ */
+.dsa-wrap {
+  display: grid;
+  grid-template-columns: 1fr 0.9fr;
+  gap: 44px;
+  align-items: center;
+}
+.dsa-stage {
+  position: relative;
+  height: 600px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  background: radial-gradient(600px 500px at 50% 30%, rgba(34, 211, 238, 0.05), transparent 70%);
+  cursor: grab;
+}
+.dsa-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.dsa-stat {
+  padding: 14px 10px;
+  text-align: center;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+}
+.dsa-stat b {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+.dsa-stat span {
+  display: block;
+  font-size: 0.72rem;
+  color: var(--text-3);
+  margin-top: 3px;
+  font-family: var(--font-mono);
+}
+.dsa-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 16px 0 24px;
+}
+.dsa-leetcode-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 22px;
+}
+.dsa-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.dsa-topic {
+  padding: 7px 13px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+  background: rgba(255, 255, 255, 0.02);
+  transition: all 0.2s ease;
+}
+.dsa-topic:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+.terminal-box {
+  background: #04070d;
+  border-radius: 14px;
+  border: 1px solid var(--line-strong);
+  box-shadow: 0 30px 70px -30px rgba(0, 0, 0, 0.8);
+}
+.terminal-bar {
+  display: flex;
+  gap: 7px;
+  align-items: center;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.terminal-bar i {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  background: #475569;
+}
+.terminal-bar i:nth-child(1) {
+  background: #f87171;
+}
+.terminal-bar i:nth-child(2) {
+  background: #fbbf24;
+}
+.terminal-bar i:nth-child(3) {
+  background: #34d399;
+}
+.terminal-bar span {
+  margin-left: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-3);
+}
+.terminal-lines {
+  padding: 18px 20px;
+  font-family: var(--font-mono);
+  font-size: 0.83rem;
+  line-height: 1.75;
+  min-height: 280px;
+}
+
+@media (max-width: 960px) {
+  .dsa-wrap {
+    grid-template-columns: 1fr;
+  }
+  .dsa-stage {
+    height: 420px;
+  }
+  .dsa-stats {
+    grid-template-columns: 1fr 1fr;
+  }
+}
