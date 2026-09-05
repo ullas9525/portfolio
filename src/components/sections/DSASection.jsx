@@ -11,7 +11,7 @@ export default function DSASection() {
         <SectionHeading
           eyebrow="07 · Problem Solving"
           title="Daily Reps, Real Growth"
-          sub="A futuristic coding terminal for a 225-problem journey — arrays to dynamic programming, one streak at a time."
+          sub="A futuristic coding terminal for a problem journey — arrays to dynamic programming, one streak at a time."
         />
 
         <div className="dsa-wrap">
@@ -63,6 +63,7 @@ export default function DSASection() {
               </div>
             </div>
 
+            <br />
             <a className="btn btn-ghost btn-sm dsa-leetcode-btn" href={leetcode.profileUrl} target="_blank" rel="noreferrer">
               <Icon name="leetcode" size={16} /> View LeetCode profile
             </a>

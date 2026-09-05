@@ -20,7 +20,7 @@ export const leetcode = {
   ],
   // Terminal snippet shown inside the 3D coding terminal
   terminalSnippet: [
-    { line: '$ whoami', out: 'ullas-b-r  --  problem solver' },
+    { line: '$ whoami', out: 'Ullas-B-R  --  problem solver' },
     { line: '$ problems_solved', out: '225  [easy:147  medium:72  hard:6]' },
     { line: '$ streak', out: '76 days strong  (longest: 76)' },
     { line: '$ sharpen_dsa()', out: 'ok. recursion.depth = +1' },

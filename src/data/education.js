@@ -6,10 +6,10 @@ export const educationList = [
   {
     id: 'be',
     degree: 'Bachelor of Engineering',
-    field: 'Computer Science & Engineering',
+    field: 'Electronics & Communication Engineering',
     institution: 'P.E.S. College of Engineering, Mandya',
-    duration: '2022 — 2027',
-    year: '2027',
+    duration: '2023 — 2027',
+    year: '4th Year',
     type: 'Undergraduate',
     highlights: [
       'Core focus on DSA, operating systems, databases and software engineering',
@@ -26,7 +26,7 @@ export const educationList = [
 export const experienceList = [
   {
     id: 'self-driven',
-    role: 'Software Engineer (portfolio-led)',
+    role: 'Software Engineer',
     org: 'Independent Product Building',
     period: '2023 — Present',
     type: 'Independent work',

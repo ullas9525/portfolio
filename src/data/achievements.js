@@ -39,8 +39,8 @@ export const githubData = {
   // Static snapshot — swap the "stats" object for live "fetch" data later.
   stats: {
     repos: 20,
-    followers: 12,
-    stars: 30,
+    followers: 3,
+    stars: 28,
     contributions: 'Building daily',
   },
   spotlight: [

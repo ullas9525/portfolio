@@ -7,9 +7,9 @@ import ContactScene from '../three/ContactScene';
 
 const links = [
   { label: 'Email', value: profile.links.email, href: `mailto:${profile.links.email}`, icon: 'mail' },
-  { label: 'LinkedIn', value: 'in/ullas-b-r-624a29294', href: profile.links.linkedin, icon: 'linkedin' },
-  { label: 'GitHub', value: 'github.com/ullas9525', href: profile.links.github, icon: 'github' },
-  { label: 'LeetCode', value: 'u/Ullas_9525', href: profile.links.leetcode, icon: 'leetcode' },
+  { label: 'LinkedIn', value: 'ullas-b-r-624a29294', href: profile.links.linkedin, icon: 'linkedin' },
+  { label: 'GitHub', value: 'ullas9525', href: profile.links.github, icon: 'github' },
+  { label: 'LeetCode', value: 'Ullas_9525', href: profile.links.leetcode, icon: 'leetcode' },
 ];
 
 export default function Contact() {
