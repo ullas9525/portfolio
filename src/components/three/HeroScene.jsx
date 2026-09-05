@@ -140,7 +140,7 @@ export default function HeroScene() {
     <>
       <SceneLights intensity={0.9} />
       <Rig strength={0.22}>
-        <group position={[-0.75, -0.15, 0]}>
+        <group position={[1.6, -0.15, 0]}>
         {/* desk */}
         <mesh position={[-0.4, -1.92, 0]} receiveShadow>
           <boxGeometry args={[4.6, 0.16, 2.1]} />
@@ -168,8 +168,8 @@ export default function HeroScene() {
         {/* floating code planes */}
         {!simple && (
           <>
-            <CodePlane position={[2.6, 1.1, -1.2]} size={[2.2, 1.4]} speed={0.5} />
-            <CodePlane position={[-2.9, 0.6, -1.8]} size={[1.8, 1.15]} speed={0.3} />
+            <CodePlane position={[3.2, 1.1, -1.2]} size={[2.2, 1.4]} speed={0.5} />
+            <CodePlane position={[2.6, 2.3, -2.0]} size={[1.6, 1.0]} speed={0.3} />
           </>
         )}
 
@@ -178,8 +178,8 @@ export default function HeroScene() {
           <ProjectCard
             key={p.id}
             project={p}
-            position={[i === 0 ? 2.3 : -2.4, i === 0 ? 1.5 : 2.0, i === 0 ? -1.6 : -0.5]}
-            scale={i === 0 ? 1 : 0.85}
+            position={[i === 0 ? 3.0 : -3.2, i === 0 ? 1.5 : 2.2, i === 0 ? -1.6 : -0.5]}
+            scale={i === 0 ? 0.95 : 0.7}
           />
         ))}
 

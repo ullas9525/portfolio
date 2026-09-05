@@ -9,11 +9,16 @@
   padding-top: calc(var(--nav-h) + 30px);
   padding-bottom: 40px;
   overflow: hidden;
+  isolation: isolate;
 }
 .hero-scene {
   position: absolute;
   inset: 0;
   z-index: 0;
+  pointer-events: none;
+}
+.hero-scene > * {
+  pointer-events: none;
 }
 .hero-grid {
   position: relative;
@@ -196,14 +201,18 @@
 /* readability panel behind the hero copy so text stays crisp over the 3D scene */
 .hero-copy {
   position: relative;
+  isolation: isolate;
 }
 .hero-copy::before {
   content: '';
   position: absolute;
-  inset: -34px -40px;
-  border-radius: 28px;
+  inset: -28px -56px -32px -44px;
+  border-radius: 32px;
   z-index: -1;
-  background: radial-gradient(closest-side at 50% 50%, rgba(6, 10, 18, 0.82), transparent 72%);
+  background:
+    radial-gradient(ellipse at 30% 40%, rgba(6, 10, 18, 0.92), rgba(6, 10, 18, 0.55) 55%, transparent 78%);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
   pointer-events: none;
 }
 
