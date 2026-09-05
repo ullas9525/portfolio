@@ -3,7 +3,7 @@ import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
 
 const summary = [
-  'Bachelor of Engineering (CSE) · P.E.S. College of Engineering, Mandya · 2027',
+  'Bachelor of Engineering (ECE) · P.E.S. College of Engineering, Mandya · 2027',
   'Full-stack web: Vite + React, Python FastAPI, PostgreSQL/SQLite',
   'Mobile: Flutter with Provider state management, Material 3, API & Firebase integration',
   'AI/ML: scikit-learn pipelines, Isolation Forest ensembles, LLM-powered apps',
