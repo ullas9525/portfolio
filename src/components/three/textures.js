@@ -184,14 +184,25 @@ export function makePhoneTexture(variant = 0) {
 
 // Project cover card texture
 function wrapText(ctx, text, x, startY, maxW, lh) {
-  const words = String(text).split(' ');
+  // Break on spaces AND hyphens so long hyphenated tokens like
+  // "AI-Based-Navigation-System" wrap gracefully inside the card.
+  const tokens = String(text).replace(/-/g, '- ').split(/\s+/).filter(Boolean);
   let line = '';
   let y = startY;
-  words.forEach((w) => {
-    const t = line + ' ' + w;
+  tokens.forEach((tok) => {
+    const t = (line ? line + ' ' : '') + tok;
     if (ctx.measureText(t).width > maxW && line) {
       ctx.fillText(line.trim(), x, y);
-      line = w;
+      line = tok;
+      y += lh;
+    } else if (ctx.measureText(tok).width > maxW) {
+      // Single token wider than the line — hard-break by chars.
+      let chunk = tok;
+      while (ctx.measureText(chunk).width > maxW && chunk.length > 1) {
+        chunk = chunk.slice(0, -1);
+      }
+      ctx.fillText(chunk.trim(), x, y);
+      line = '';
       y += lh;
     } else {
       line = t;
@@ -239,12 +250,12 @@ export function makeProjectCoverTexture(project, w = 640, h = 400) {
   ctx.fillText(project.type || 'PROJECT', 34, 76);
   // big title
   ctx.fillStyle = '#e8eef7';
-  ctx.font = '700 40px "Space Grotesk", sans-serif';
-  wrapText(ctx, project.name, 34, 118, w - 68, 46);
+  ctx.font = '700 34px "Space Grotesk", sans-serif';
+  wrapText(ctx, project.name, 34, 116, w - 68, 40);
   // blurb
   ctx.fillStyle = 'rgba(164,182,203,0.92)';
-  ctx.font = '500 17px "Inter", sans-serif';
-  wrapText(ctx, project.blurb || project.description || '', 34, 198, w - 68, 24);
+  ctx.font = '500 16px "Inter", sans-serif';
+  wrapText(ctx, project.blurb || project.description || '', 34, 212, w - 68, 22);
   return toTexture(c);
 }
 
