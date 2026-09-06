@@ -1,6 +1,7 @@
 import { lazy, Suspense, useEffect, useState } from 'react';
 import Navbar from './components/ui/Navbar';
 import Loader from './components/ui/Loader';
+import TargetCursor from './components/ui/TargetCursor';
 import Hero from './components/sections/Hero';
 import Footer from './components/sections/Footer';
 
@@ -42,6 +43,15 @@ export default function App() {
 
   return (
     <>
+      <TargetCursor
+        spinDuration={2}
+        hideDefaultCursor
+        parallaxOn
+        hoverDuration={0.2}
+        cursorColor="#e8eef7"
+        cursorColorOnTarget="#22d3ee"
+        targetSelector=".btn, a, button, .ag-panel, [role='tab']"
+      />
       <ScrollProgress />
       <Loader hide={ready} />
       <Navbar />
