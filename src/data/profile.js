@@ -6,7 +6,7 @@ export const profile = {
   name: 'Ullas B R',
   nameFirst: 'Ullas',
   initials: 'UBR',
-  titles: ['AI Enthusiast', 'Software Engineer', 'Flutter Developer'],
+  titles: ['AI Enthusiast', 'Software Engineer', 'Web Developer'],
   tagline:
     'Build practical software solutions that connect technology, creativity, and real-world impact.',
   intro:

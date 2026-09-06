@@ -203,6 +203,21 @@
   position: relative;
   isolation: isolate;
 }
+
+/* ParticleText hero name — give the canvas a sized box so glyphs can be sampled */
+.hero-name-pt {
+  height: clamp(150px, 17vw, 200px);
+  position: relative;
+}
+.hero-name-pt .particle-text {
+  min-height: 0;
+  height: 100%;
+}
+@media (max-width: 960px) {
+  .hero-name-pt {
+    height: clamp(140px, 20vw, 170px);
+  }
+}
 .hero-copy::before {
   content: '';
   position: absolute;

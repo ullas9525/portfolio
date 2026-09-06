@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { profile } from '../../data/profile';
 import { scrollToId } from '../../utils/helpers';
 import Icon, { SiGithub, FaLinkedin, SiLeetcode, TbMail } from '../ui/Icons';
+import ParticleText from '../ui/ParticleText';
 import CanvasScene from '../three/CanvasScene';
 import HeroScene from '../three/HeroScene';
 
@@ -60,8 +61,25 @@ export default function Hero() {
           <span className="hero-kicker">
             <span className="live-dot" aria-hidden="true" /> Software Engineer
           </span>
-          <h1 className="hero-name">
-            {profile.nameFirst} <span className="grad">{profile.name.split(' ').slice(1).join(' ')}</span>
+          <h1 className="hero-name hero-name-pt">
+            <ParticleText
+              text={profile.name}
+              particleSize={2}
+              density={4}
+              color="#e9eef7"
+              highlightColor="#22d3ee"
+              scatter={110}
+              gatherDuration={1600}
+              stagger={420}
+              pointerRepel={30}
+              repelRadius={140}
+              idleDrift={0.55}
+              trigger="mount"
+              fontSize="clamp(2.5rem, 6.4vw, 4.8rem)"
+              fontWeight={700}
+              fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
+              glow
+            />
           </h1>
 
           <p className="hero-role" aria-label={`Roles: ${profile.titles.join(', ')}`}>
