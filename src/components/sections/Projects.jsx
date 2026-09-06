@@ -3,8 +3,21 @@ import { motion } from 'framer-motion';
 import { projects } from '../../data/projects';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import CanvasScene from '../three/CanvasScene';
-import ProjectsScene from '../three/ProjectsScene';
+import AccordionGallery from '../ui/AccordionGallery';
+import { makeProjectCoverTexture } from '../three/textures';
+
+// Use the project's real screenshot when available, but fall back to the
+// existing procedural cover (name / type / status) if the file is missing,
+// so the gallery never shows a broken image.
+const galleryItems = projects.map((p) => {
+  const procedural = makeProjectCoverTexture(p, 900, 1200).image.toDataURL();
+  return {
+    image: p.image || procedural,
+    fallback: procedural,
+    label: p.name,
+    alt: p.blurb
+  };
+});
 
 export default function Projects() {
   const [selected, setSelected] = useState(0);
@@ -18,32 +31,32 @@ export default function Projects() {
         <SectionHeading
           eyebrow="03 · Projects"
           title="Things I've Built"
-          sub="A 3D gallery of real, shipped work. Click a card to pull it toward you and read the full story — problem, features, stack and links."
+          sub="An expandable gallery of real, shipped work. Hover a cover to expand it and read the full story — problem, features, stack and links."
         />
 
         <Reveal>
           <div className="projects-stage">
-            <CanvasScene camera={{ position: [0, 0.2, 6.4], fov: 52 }}>
-              <ProjectsScene projects={projects} selected={selected} onSelect={setSelected} />
-            </CanvasScene>
-          </div>
-        </Reveal>
-
-        <Reveal delay={0.05}>
-          <div className="projects-reel" role="tablist" aria-label="Projects">
-            {projects.map((p, i) => (
-              <button
-                key={p.id}
-                role="tab"
-                aria-selected={selected === i}
-                className={`project-tab${selected === i ? ' active' : ''}`}
-                onClick={() => setSelected(i)}
-              >
-                <span className="num">0{i + 1}</span>
-                <span className="nm">{p.name}</span>
-                <span className={`st ${p.status === 'Live' ? 'st-live' : 'st-soon'}`}>{p.status}</span>
-              </button>
-            ))}
+            <AccordionGallery
+              items={galleryItems}
+              defaultIndex={0}
+              expandRatio={0.4}
+              trigger="hover"
+              onChange={setSelected}
+              accentColor="#22d3ee"
+              overlayColor="#060a12"
+              textColor="#e8eef7"
+              grayscale
+              showLabels
+              duration={0.6}
+              ease="power3.out"
+              parallax={0.5}
+              tilt={8}
+              stagger={0.06}
+              height={440}
+              gap={10}
+              radius={16}
+              orientation="horizontal"
+            />
           </div>
         </Reveal>
 
