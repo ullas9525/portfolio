@@ -101,6 +101,30 @@
   background-clip: text;
   color: transparent;
 }
+/* React Bits CountUp renders a <span>, so mirror the <b> value styling here */
+.dsa-stat .dsa-stat-val {
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  font-weight: 700;
+  line-height: 1.1;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+.dsa-stat .dsa-plus {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-left: 1px;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 .dsa-stat span {
   display: block;
   font-size: 0.72rem;

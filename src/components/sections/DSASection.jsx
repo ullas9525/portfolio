@@ -1,7 +1,7 @@
 import { leetcode } from '../../data/leetcode';
 import Icon from '../ui/Icons';
-import SectionHeading, { Reveal, CountUp } from '../ui/SectionHeading';
-import { formatNumber } from '../../utils/helpers';
+import SectionHeading, { Reveal } from '../ui/SectionHeading';
+import CountUpBits from '../ui/CountUp';
 import CanvasScene from '../three/CanvasScene';
 import DSAScene from '../three/DSAScene';
 
@@ -27,19 +27,23 @@ export default function DSASection() {
           <div>
             <div className="dsa-stats">
               <div className="dsa-stat">
-                <CountUp end={leetcode.solved} format={(n) => `${formatNumber(n)}+`} />
+                <CountUpBits to={leetcode.solved} duration={1.4} className="dsa-stat-val" />
+                <span className="dsa-plus">+</span>
                 <span>Solved</span>
               </div>
               <div className="dsa-stat">
-                <CountUp end={leetcode.easy} format={(n) => `${formatNumber(n)}+`} />
+                <CountUpBits to={leetcode.easy} duration={1.4} className="dsa-stat-val" />
+                <span className="dsa-plus">+</span>
                 <span>Easy</span>
               </div>
               <div className="dsa-stat">
-                <CountUp end={leetcode.medium} format={(n) => `${formatNumber(n)}+`} />
+                <CountUpBits to={leetcode.medium} duration={1.4} className="dsa-stat-val" />
+                <span className="dsa-plus">+</span>
                 <span>Medium</span>
               </div>
               <div className="dsa-stat">
-                <CountUp end={leetcode.hard} format={(n) => `${formatNumber(n)}+`} />
+                <CountUpBits to={leetcode.hard} duration={1.4} className="dsa-stat-val" />
+                <span className="dsa-plus">+</span>
                 <span>Hard</span>
               </div>
             </div>
@@ -51,10 +55,10 @@ export default function DSASection() {
               </div>
               <div className="terminal-lines">
                 <span style={{ color: '#22d3ee' }}>$ streak --today</span>{' '}
-                <span style={{ color: '#34d399' }}>→ {leetcode.currentStreak}+ days 🔥</span>
+                <span style={{ color: '#34d399' }}>→ <CountUpBits to={leetcode.currentStreak} duration={1.4} />+ days 🔥</span>
                 <br />
                 <span style={{ color: '#22d3ee' }}>$ longest_streak</span>{' '}
-                <span style={{ color: '#34d399' }}>→ {leetcode.longestStreak}+ days</span>
+                <span style={{ color: '#34d399' }}>→ <CountUpBits to={leetcode.longestStreak} duration={1.4} />+ days</span>
                 <br />
                 <span style={{ color: '#22d3ee' }}>$ global_ranking</span>{' '}
                 <span style={{ color: '#34d399' }}>→ {leetcode.ranking}</span>
