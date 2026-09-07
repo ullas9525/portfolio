@@ -11,7 +11,7 @@ export default function Education() {
         <SectionHeading
           eyebrow="09 · Education"
           title="Where It's All Coming Together"
-          sub="Bachelor of Engineering in Computer Science — where theory meets the projects I ship."
+          sub="Bachelor of Engineering in Electronics and Communication Engineering — where theory meets the projects I build."
         />
 
         <Reveal>
