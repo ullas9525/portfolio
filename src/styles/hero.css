@@ -234,6 +234,7 @@
 @media (max-width: 960px) {
   .hero-grid {
     grid-template-columns: 1fr;
+    gap: 28px;
     text-align: center;
   }
   .hero-kicker,
@@ -248,8 +249,12 @@
   .hero-socials {
     justify-content: center;
   }
+  /* Photo visible on mobile: stacked above the copy (order -1) as a profile header */
   .hero-photo-wrap {
-    display: none;
+    display: block;
+    order: -1;
+    margin: 0 auto;
+    width: min(300px, 70vw);
   }
   .hero-scroll {
     display: none;
