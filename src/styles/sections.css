@@ -69,12 +69,38 @@
 }
 
 @media (max-width: 720px) {
-  .about-scard {
-    padding: 30px 22px;
-    flex-wrap: wrap;
-  }
   .about-stage {
-    height: 520px;
+    height: 540px;
+  }
+  /* Specificity bump (parent class): ScrollStack.css is injected after sections.css
+     because About is lazy-loaded — equal-specificity rules there would win */
+  /* Top padding must exceed stackPosition (14% of 540 = 75.6px) so card 0's
+     scale ramp never degenerates to Infinity (start == end) */
+  .scroll-stack-scroller .scroll-stack-inner {
+    padding: 100px 16px 8rem;
+  }
+  /* Auto height — the fixed 20rem let long text spill past the card edge */
+  .scroll-stack-scroller .scroll-stack-card {
+    height: auto;
+    min-height: 0;
+    border-radius: 24px;
+  }
+  .about-scard {
+    padding: 26px 20px;
+    flex-wrap: wrap;
+    gap: 16px;
+    /* Opaque on phones: translucent bg let cards behind bleed through */
+    background: linear-gradient(165deg, rgba(20, 29, 48, 0.98), rgba(9, 14, 26, 0.98));
+  }
+  .about-scard-body {
+    flex: 1 1 100%;
+  }
+  .about-scard-body h3 {
+    font-size: 1.2rem;
+    margin-bottom: 8px;
+  }
+  .about-scard-body p {
+    font-size: 0.92rem;
   }
 }
 
