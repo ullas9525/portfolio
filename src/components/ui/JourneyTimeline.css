@@ -1,0 +1,210 @@
+/* ============================================================
+   JOURNEY TIMELINE — original "learning path" component
+   ============================================================ */
+.journey {
+  position: relative;
+  /* no top padding: the rail's top tip lands exactly on the first
+     node's centre (nodes sit at the top of each card) */
+  padding: 0 0 10px;
+}
+
+/* ----- central rail (right side) ----- */
+.journey__rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 44px; /* rail centre 46px from the right edge */
+  width: 4px;
+}
+.journey__rail-base {
+  position: absolute;
+  inset: 0;
+  border-radius: 999px;
+  background: var(--line);
+  opacity: 0.55;
+}
+.journey__rail-fill {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 0%;
+  min-height: 4px;
+  border-radius: 999px;
+  box-shadow: 0 0 14px color-mix(in srgb, var(--accent) 55%, transparent);
+  transition: height 0.15s linear;
+}
+
+/* ----- full-width cards, node on the rail ----- */
+.journey__grid {
+  position: relative;
+  z-index: 1;
+}
+
+/* milestone reserves a clear right gutter so the rail never
+   touches the card; the node lives in that gutter */
+.journey__milestone {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-right: 120px;
+  margin-bottom: 40px;
+}
+.journey__milestone:last-child {
+  margin-bottom: 0;
+}
+
+/* node sits ON the rail (centre 46px from the right) at the TOP of
+   each card: rail right:44 + width 4 → centre 46; node 18px wide with
+   right:37 → centre 37 + 9 = 46. Same reference point, no drift. */
+.journey__node {
+  position: absolute;
+  top: 0;
+  transform: translateY(-50%);
+  right: 37px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.journey__node-core {
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent-3);
+  box-shadow: 0 0 0 5px rgba(52, 211, 153, 0.14);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+.journey__node-core::before {
+  content: '';
+  position: absolute;
+  inset: -9px;
+  border-radius: 50%;
+  border: 1px dashed rgba(52, 211, 153, 0.35);
+  animation: journey-pulse 3.2s linear infinite;
+}
+@keyframes journey-pulse {
+  to {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+.journey__node[data-lit='true'] .journey__node-core {
+  background: var(--accent);
+  box-shadow: 0 0 0 5px rgba(34, 211, 238, 0.16), 0 0 16px var(--accent);
+}
+
+/* card container — fills the remaining width */
+.journey__card {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 24px 26px;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: linear-gradient(165deg, rgba(20, 29, 48, 0.72), rgba(9, 14, 26, 0.66));
+  box-shadow: 0 22px 54px -32px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  position: relative;
+}
+
+/* card accent edge (right, next to the rail) */
+.journey__card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 3px;
+  height: 100%;
+  background: var(--grad);
+}
+
+.journey__card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+.journey__badge {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--bg);
+  background: var(--grad);
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+.journey__type {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.journey__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.25rem;
+}
+.journey__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 0;
+  margin: 10px 0 14px;
+  font-family: var(--font-mono);
+  color: var(--text-2);
+  font-size: 0.82rem;
+}
+.journey__meta-item + .journey__meta-item::before {
+  content: '·';
+  margin: 0 8px;
+  color: var(--text-3);
+}
+.journey__highlights {
+  list-style: none;
+}
+.journey__highlights li {
+  position: relative;
+  padding-left: 20px;
+  color: var(--text-2);
+  font-size: 0.92rem;
+  margin-bottom: 7px;
+}
+.journey__highlights li::before {
+  content: '▹';
+  position: absolute;
+  left: 0;
+  color: var(--accent-2);
+}
+
+/* ----- responsive: rail stays right, cards full width ----- */
+@media (max-width: 860px) {
+  /* rail centre = 20px from the right (right:18 + 2); node centre
+     matches (right:11 + 9 = 20) so they stay glued together */
+  .journey__rail {
+    right: 18px;
+  }
+  .journey__node {
+    right: 11px;
+  }
+  .journey__milestone {
+    padding-right: 64px;
+    margin-bottom: 26px;
+  }
+  .journey__card {
+    padding: 20px 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .journey__rail-fill {
+    transition: none;
+  }
+  .journey__node-core::before {
+    animation: none;
+  }
+}

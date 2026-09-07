@@ -106,12 +106,11 @@
    ============================================================ */
 .edu-stage {
   position: relative;
-  height: 480px;
+  padding: 34px 24px;
   border-radius: var(--radius);
   border: 1px solid var(--line);
   overflow: hidden;
-  background: radial-gradient(600px 400px at 50% 30%, rgba(129, 140, 248, 0.06), transparent 70%);
-  margin-bottom: 30px;
+  background: radial-gradient(700px 500px at 50% 0%, rgba(129, 140, 248, 0.06), transparent 70%);
 }
 .edu-card {
   display: flex;
