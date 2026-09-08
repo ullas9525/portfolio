@@ -1,0 +1,276 @@
+/* ============================================================
+   IoT CIRCUIT — creative circuit data-flow visual
+   ============================================================ */
+.iocircuit {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* background grid (PCB-style) */
+.iocircuit__grid {
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(0deg, rgba(52, 211, 153, 0.04) 0 1px, transparent 1px 28px),
+    repeating-linear-gradient(90deg, rgba(52, 211, 153, 0.04) 0 1px, transparent 1px 28px);
+}
+.iocircuit__grid::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(480px 420px at 50% 50%, rgba(52, 211, 153, 0.07), transparent 70%);
+}
+
+/* SVG circuit traces (stretched to fill, so 1 unit = 0.2% of the
+   stage — the same mapping the chips use for left/top) */
+.iocircuit__traces {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+.iocircuit__trace {
+  fill: none;
+  stroke: rgba(52, 211, 153, 0.35);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 4;
+  animation: iocircuit-dash 2s linear infinite;
+}
+.iocircuit__uplink {
+  fill: none;
+  stroke: rgba(52, 211, 153, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 5 5;
+  animation: iocircuit-dash 1.6s linear infinite;
+}
+.iocircuit__flow {
+  fill: #7ef0be;
+  filter: drop-shadow(0 0 5px rgba(52, 211, 153, 0.9));
+}
+@keyframes iocircuit-dash {
+  to { stroke-dashoffset: -20; }
+}
+
+/* central hub */
+.iocircuit__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2px;
+  background: radial-gradient(circle, rgba(52, 211, 153, 0.2), rgba(6, 10, 18, 0.92) 70%);
+  border: 1.5px solid rgba(52, 211, 153, 0.55);
+  box-shadow:
+    0 0 30px rgba(52, 211, 153, 0.25),
+    inset 0 0 20px rgba(52, 211, 153, 0.08);
+  z-index: 3;
+}
+.iocircuit__hub-icon {
+  color: #34d399;
+  filter: drop-shadow(0 0 10px rgba(52, 211, 153, 0.7));
+}
+.iocircuit__hub-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  color: var(--text);
+}
+.iocircuit__hub-sub {
+  font-family: var(--font-mono);
+  font-size: 0.52rem;
+  letter-spacing: 0.16em;
+  color: var(--text-3);
+}
+
+/* sensor nodes — left/top come from JSX (identical math to the
+   SVG traces), so each chip sits exactly on its trace endpoint */
+.iocircuit__sensor {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 13px;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  background: rgba(6, 10, 18, 0.88);
+  z-index: 2;
+  transition: border-color 0.25s, box-shadow 0.25s;
+}
+.iocircuit__sensor:hover {
+  border-color: rgba(52, 211, 153, 0.7);
+  box-shadow: 0 0 14px rgba(52, 211, 153, 0.2);
+}
+.iocircuit__sensor-icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: rgba(52, 211, 153, 0.12);
+  color: #34d399;
+  font-size: 0.95rem;
+}
+.iocircuit__sensor-label {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  color: var(--text-2);
+  white-space: nowrap;
+}
+/* tiny blinking status LED inside each chip */
+.iocircuit__sensor-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #34d399;
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.9);
+  animation: iocircuit-led-blink 2.1s ease-in-out infinite;
+  animation-delay: var(--d, 0s);
+}
+@keyframes iocircuit-led-blink {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; }
+}
+
+/* cloud node */
+.iocircuit__cloud {
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(52, 211, 153, 0.35);
+  background: rgba(6, 10, 18, 0.85);
+  color: #34d399;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.1em;
+  z-index: 2;
+  animation: iocircuit-cloud-float 4s ease-in-out infinite;
+}
+@keyframes iocircuit-cloud-float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+/* data flow pulses (radiate from hub outward) */
+.iocircuit__pulse {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(52, 211, 153, 0.3);
+  transform: translate(-50%, -50%);
+  animation: iocircuit-pulse 3.2s ease-out infinite;
+  pointer-events: none;
+}
+.iocircuit__pulse--1 { width: 120px; height: 120px; }
+.iocircuit__pulse--2 { width: 240px; height: 240px; animation-delay: 1s; }
+.iocircuit__pulse--3 { width: 360px; height: 360px; animation-delay: 2s; }
+@keyframes iocircuit-pulse {
+  0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.7; }
+  70% { opacity: 0.15; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* status LEDs */
+.iocircuit__status {
+  position: absolute;
+  bottom: 6%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 10px;
+  z-index: 2;
+}
+.iocircuit__led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  animation: iocircuit-blink 1.4s ease-in-out infinite;
+}
+.iocircuit__led--on {
+  background: #34d399;
+  box-shadow: 0 0 8px #34d399;
+}
+.iocircuit__led--sync {
+  background: #22d3ee;
+  box-shadow: 0 0 8px #22d3ee;
+  animation-delay: 0.35s;
+}
+.iocircuit__led--alert {
+  background: #fbbf24;
+  box-shadow: 0 0 8px #fbbf24;
+  animation-delay: 0.7s;
+}
+@keyframes iocircuit-blink {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+
+/* responsive */
+@media (max-width: 900px) {
+  .iocircuit__sensor {
+    padding: 6px 10px;
+    gap: 5px;
+  }
+  .iocircuit__sensor-icon {
+    width: 24px;
+    height: 24px;
+    font-size: 0.85rem;
+  }
+  .iocircuit__sensor-label {
+    font-size: 0.58rem;
+  }
+  .iocircuit__hub {
+    width: 90px;
+    height: 90px;
+  }
+  .iocircuit__hub-icon { font-size: 1.3rem; }
+  .iocircuit__hub-label { font-size: 0.62rem; }
+  .iocircuit__cloud {
+    padding: 8px 14px;
+    font-size: 0.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .iocircuit__trace,
+  .iocircuit__uplink,
+  .iocircuit__pulse,
+  .iocircuit__cloud,
+  .iocircuit__led,
+  .iocircuit__sensor-dot {
+    animation: none;
+  }
+  .iocircuit__trace,
+  .iocircuit__uplink {
+    stroke-dasharray: none;
+    stroke: rgba(52, 211, 153, 0.25);
+  }
+  .iocircuit__flow {
+    display: none;
+  }
+  .iocircuit__pulse {
+    opacity: 0.2;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  .iocircuit__sensor-dot {
+    opacity: 0.85;
+  }
+}

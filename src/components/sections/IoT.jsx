@@ -1,6 +1,6 @@
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import IoTBoard from '../ui/IoTBoard';
+import IoTCircuit from '../ui/IoTCircuit';
 
 const items = [
   { icon: 'cpu', name: 'Arduino' },
@@ -26,7 +26,7 @@ export default function IoT() {
         <div className="iot-wrap">
           <Reveal>
             <div className="iot-stage">
-              <IoTBoard />
+              <IoTCircuit />
             </div>
           </Reveal>
 

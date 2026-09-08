@@ -13,7 +13,7 @@
   border-radius: var(--radius);
   border: 1px solid var(--line);
   overflow: hidden;
-  background: radial-gradient(500px 450px at 50% 40%, rgba(251, 191, 36, 0.06), transparent 70%);
+  background: radial-gradient(500px 450px at 50% 40%, rgba(52, 211, 153, 0.06), transparent 70%);
 }
 .iot-items {
   display: grid;
@@ -33,11 +33,11 @@
   transition: all 0.2s ease;
 }
 .iot-item svg {
-  color: #fbbf24;
+  color: #34d399;
   font-size: 1.1rem;
 }
 .iot-item:hover {
-  border-color: rgba(251, 191, 36, 0.4);
+  border-color: rgba(52, 211, 153, 0.4);
   color: var(--text);
   transform: translateY(-3px);
 }
@@ -45,7 +45,7 @@
   margin-top: 18px;
   color: var(--text-2);
   font-size: 0.92rem;
-  border-left: 3px solid #fbbf24;
+  border-left: 3px solid #34d399;
   padding-left: 14px;
 }
 
