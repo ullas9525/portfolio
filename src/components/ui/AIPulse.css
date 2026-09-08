@@ -47,57 +47,35 @@
   filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.8));
 }
 
-/* orbiting micro-nodes */
-.aipulse__orb {
+/* concept chips — revolve around the core, counter-rotating so the
+   label text stays upright the whole time */
+.aipulse__chip {
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #a78bfa;
-  transform: translate(-50%, -50%);
-  animation: aipulse-orbit 9s linear infinite;
-}
-.aipulse__orb--1 { animation-duration: 9s; }
-.aipulse__orb--2 { animation-duration: 13s; }
-.aipulse__orb--3 { animation-duration: 17s; }
-.aipulse__orb--4 { animation-duration: 11s; width: 7px; height: 7px; }
-.aipulse__orb--5 { animation-duration: 15s; width: 14px; height: 14px; background: #22d3ee; }
-.aipulse__orb--1 { box-shadow: 0 0 10px #818cf8; }
-.aipulse__orb--2 { box-shadow: 0 0 10px #f472b6; }
-.aipulse__orb--3 { box-shadow: 0 0 10px #34d399; }
-@keyframes aipulse-orbit {
-  from { transform: translate(-50%, -50%) rotate(0deg) translateX(190px) rotate(0deg); }
-  to { transform: translate(-50%, -50%) rotate(360deg) translateX(190px) rotate(-360deg); }
-}
-
-/* floating concept chips around the edges */
-.aipulse__chip {
-  position: absolute;
+  --chip-r: 200px;
   font-family: var(--font-mono);
   font-size: 0.68rem;
   color: var(--text-2);
-  padding: 5px 11px;
+  padding: 6px 12px;
   border-radius: 999px;
   border: 1px solid color-mix(in srgb, var(--chipc) 40%, var(--line));
   background: color-mix(in srgb, var(--chipc) 10%, rgba(6, 10, 18, 0.8));
-  animation: aipulse-float 6s ease-in-out infinite;
-  animation-delay: calc(var(--chipi) * 0.4s);
+  box-shadow: 0 6px 16px -6px rgba(0, 0, 0, 0.6);
   white-space: nowrap;
+  transform: translate(-50%, -50%);
+  animation: aipulse-chip-orbit 24s linear infinite;
+  /* negative delay staggers each chip evenly around the ring */
+  animation-delay: calc(var(--chipi) * -4s);
 }
-@keyframes aipulse-float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
+@keyframes aipulse-chip-orbit {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg) translateY(calc(-1 * var(--chip-r))) rotate(0deg);
+  }
+  to {
+    transform: translate(-50%, -50%) rotate(360deg) translateY(calc(-1 * var(--chip-r))) rotate(-360deg);
+  }
 }
-
-/* distribute chips (render after 3 rings + core + 5 orbs = child 10+) */
-.aipulse__chip:nth-child(10) { top: 16%; left: 8%; }
-.aipulse__chip:nth-child(11) { top: 10%; right: 10%; }
-.aipulse__chip:nth-child(12) { top: 30%; right: 3%; }
-.aipulse__chip:nth-child(13) { bottom: 20%; left: 14%; }
-.aipulse__chip:nth-child(14) { bottom: 28%; right: 16%; }
-.aipulse__chip:nth-child(15) { bottom: 8%; left: 40%; }
 
 /* subtle skewed orbit field */
 .aipulse::before {
@@ -113,19 +91,27 @@
 
 @media (max-width: 900px) {
   .aipulse__ring--3 { display: none; }
-  .aipulse__chip { font-size: 0.62rem; padding: 4px 9px; }
-  /* tighter orbit on small screens */
-  @keyframes aipulse-orbit {
-    from { transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg); }
-    to { transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-360deg); }
+  .aipulse__chip {
+    --chip-r: 130px;
+    font-size: 0.62rem;
+    padding: 4px 9px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
   .aipulse__ring,
-  .aipulse__orb,
-  .aipulse__chip,
   .aipulse::before {
     animation: none;
   }
+  .aipulse__chip {
+    animation: none;
+  }
+  /* static ring placement so chips stay visible without motion
+     (chips are children 5-10 after the 3 rings + core) */
+  .aipulse__chip:nth-child(5) { transform: translate(-50%, -50%) rotate(0deg) translateY(calc(-1 * var(--chip-r))) rotate(0deg); }
+  .aipulse__chip:nth-child(6) { transform: translate(-50%, -50%) rotate(60deg) translateY(calc(-1 * var(--chip-r))) rotate(-60deg); }
+  .aipulse__chip:nth-child(7) { transform: translate(-50%, -50%) rotate(120deg) translateY(calc(-1 * var(--chip-r))) rotate(-120deg); }
+  .aipulse__chip:nth-child(8) { transform: translate(-50%, -50%) rotate(180deg) translateY(calc(-1 * var(--chip-r))) rotate(-180deg); }
+  .aipulse__chip:nth-child(9) { transform: translate(-50%, -50%) rotate(240deg) translateY(calc(-1 * var(--chip-r))) rotate(-240deg); }
+  .aipulse__chip:nth-child(10) { transform: translate(-50%, -50%) rotate(300deg) translateY(calc(-1 * var(--chip-r))) rotate(-300deg); }
 }
