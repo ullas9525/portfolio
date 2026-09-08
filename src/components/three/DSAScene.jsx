@@ -8,7 +8,7 @@ import { useFrame } from '@react-three/fiber';
 import { leetcode } from '../../data/leetcode';
 import { makeTerminalFrame } from './textures';
 import { isMobileAgent, motionSafe } from '../../utils/helpers';
-import { SceneLights, Particles, Rig, GlowDisc, FloatGroup } from './common';
+import { SceneLights, Particles, GlowDisc } from './common';
 
 const TOPICS = ['binary_search', 'dp', 'graphs', 'two_pointers', 'heaps'];
 
@@ -87,22 +87,22 @@ export default function DSAScene() {
   const simple = isMobileAgent();
   return (
     <>
-      <SceneLights intensity={0.85} />
-      <Rig strength={0.2}>
-        <FloatGroup speed={0.5} height={0.08}>
-          <Terminal />
-        </FloatGroup>
-        {!simple && (
-          <>
-            <TopicChip label="binary_search" position={[-2.6, 1.5, -1]} color="#22d3ee" />
-            <TopicChip label="dp[k]" position={[2.6, 1.2, -1.4]} color="#818cf8" />
-            <TopicChip label="graphs" position={[-2.2, -1.3, -0.5]} color="#34d399" />
-            <TopicChip label="two_pointers" position={[2.5, -1.0, -0.8]} color="#f472b6" />
-          </>
-        )}
-        <Particles count={simple ? 70 : 160} color="#22d3ee" size={0.045} area={[8, 6, 8]} />
-        <GlowDisc position={[0, -2.3, -2]} radius={5.5} color="#0b3a52" opacity={0.4} />
-      </Rig>
+      <SceneLights intensity={0.55} />
+      {/* Static stage: the terminal never spins/tilts — it always
+          faces the user down +z (the 3D rig was removed). */}
+      <Terminal />
+
+      {!simple && (
+        <>
+          <TopicChip label="binary_search" position={[-2.6, 1.5, -1]} color="#22d3ee" />
+          <TopicChip label="dp[k]" position={[2.6, 1.2, -1.4]} color="#818cf8" />
+          <TopicChip label="graphs" position={[-2.2, -1.3, -0.5]} color="#34d399" />
+          <TopicChip label="two_pointers" position={[2.5, -1.0, -0.8]} color="#f472b6" />
+        </>
+      )}
+
+      <Particles count={simple ? 70 : 160} color="#22d3ee" size={0.045} area={[8, 6, 8]} />
+      <GlowDisc position={[0, -2.3, -2]} radius={5.5} color="#0b3a52" opacity={0.4} />
     </>
   );
 }

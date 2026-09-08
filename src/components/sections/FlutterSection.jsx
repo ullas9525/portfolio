@@ -1,8 +1,7 @@
 import { projects } from '../../data/projects';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import CanvasScene from '../three/CanvasScene';
-import FlutterScene from '../three/FlutterScene';
+import AppPhone from '../ui/AppPhone';
 
 const feats = [
   { icon: 'phone', title: 'Flutter Apps', desc: 'Cross-platform mobile apps with buttery Material 3 UIs and responsive layouts.' },
@@ -22,15 +21,13 @@ export default function FlutterSection() {
         <SectionHeading
           eyebrow="04 · App Development"
           title="Flutter, In My Hands"
-          sub="A dedicated app layer — from state management to AI-powered features — shipped as real, downloadable apps. Grab the phone; it rotates with you."
+          sub="A dedicated app layer — from state management to AI-powered features — shipped as real, downloadable apps."
         />
 
         <div className="app-grid">
           <Reveal>
             <div className="app-stage">
-              <CanvasScene camera={{ position: [0, 0.3, 4.4], fov: 50 }}>
-                <FlutterScene />
-              </CanvasScene>
+              <AppPhone />
             </div>
           </Reveal>
 

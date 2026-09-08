@@ -1,0 +1,208 @@
+/* ============================================================
+   APP PHONE — original 2D Material-style phone mockup
+   ============================================================ */
+.appphone {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+.appphone::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(520px 460px at 50% 45%, rgba(52, 211, 153, 0.06), transparent 70%);
+  border-radius: var(--radius);
+}
+
+/* the phone body */
+.appphone__device {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 188px;
+  height: 396px;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(160deg, #101828, #0a1220);
+  border: 1px solid var(--line-strong);
+  border-radius: 30px;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.6), inset 0 0 0 2px rgba(52, 211, 153, 0.12);
+  animation: appphone-float 6s ease-in-out infinite;
+}
+.appphone__notch {
+  position: absolute;
+  top: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 74px;
+  height: 22px;
+  border-radius: 20px;
+  background: #05070d;
+  z-index: 2;
+}
+@keyframes appphone-float {
+  0%, 100% { transform: translate(-50%, -50%) translateY(0); }
+  50% { transform: translate(-50%, -50%) translateY(-12px); }
+}
+
+/* the app screen (inset panel) */
+.appphone__screen {
+  position: absolute;
+  top: 46px;
+  left: 14px;
+  right: 14px;
+  bottom: 14px;
+  border-radius: 16px;
+  background: #070b12;
+  overflow: hidden;
+}
+.appphone__status {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 12px;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-3);
+}
+.appphone__icons i {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  margin: 0 2px;
+  background: var(--text-3);
+}
+.appphone__appbar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+.appphone__avatar {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--grad);
+}
+.appphone__appbar-t {
+  font-size: 0.7rem;
+  color: var(--text-2);
+}
+
+/* skeleton content cards */
+.appphone__cards {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 14px 12px;
+}
+.appphone__card {
+  height: 66px;
+  border-radius: 12px;
+  background: rgba(17, 24, 40, 0.9);
+  border: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px 12px;
+  animation: appphone-pop 4.5s ease-in-out infinite;
+  animation-delay: var(--d);
+}
+.appphone__card span { border-radius: 5px; }
+.appphone__bar {
+  display: block;
+  height: 7px;
+  background: rgba(52, 211, 153, 0.35);
+}
+.appphone__bar--w1 { width: 90%; }
+.appphone__bar--w2 { width: 70%; }
+.appphone__bar--w3 { width: 82%; }
+.appphone__pill--full { height: 10px; background: rgba(34, 211, 238, 0.3); }
+.appphone__pill--half { height: 10px; width: 55%; background: rgba(129, 140, 248, 0.3); }
+.appphone__row { height: 12px; background: rgba(148, 163, 184, 0.2); }
+@keyframes appphone-pop {
+  0%, 100% { opacity: 0.35; transform: translateY(0); }
+  50% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* bottom nav */
+.appphone__nav {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 26px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: rgba(17, 24, 40, 0.9);
+  border-top: 1px solid rgba(148, 163, 184, 0.1);
+}
+.appphone__nav-i {
+  width: 16px;
+  height: 6px;
+  border-radius: 3px;
+  background: var(--text-3);
+}
+.appphone__nav-i--on {
+  background: var(--accent-3);
+  box-shadow: 0 0 6px rgba(52, 211, 153, 0.6);
+}
+
+/* floating action button */
+.appphone__fab {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: var(--accent-3);
+  background: var(--grad);
+  box-shadow: 0 4px 14px -4px rgba(34, 211, 238, 0.5);
+}
+
+/* stack chips floating around */
+.appphone__chip {
+  position: absolute;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(6, 10, 18, 0.8);
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--text-2);
+  animation: appphone-drift 7s ease-in-out infinite;
+}
+.appphone__chip svg { color: var(--accent-3); }
+@keyframes appphone-drift {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.appphone__chip--1 { top: 14%; left: 12%; animation-delay: 0s; }
+.appphone__chip--2 { top: 22%; right: 10%; animation-delay: 0.7s; }
+.appphone__chip--3 { top: 44%; left: 8%; animation-delay: 1.4s; }
+.appphone__chip--4 { top: 66%; left: 14%; animation-delay: 2.1s; }
+.appphone__chip--5 { bottom: 12%; right: 12%; animation-delay: 2.8s; }
+
+@media (max-width: 960px) {
+  .appphone__device { width: 168px; height: 352px; }
+  .appphone__chip { font-size: 0.58rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .appphone__device,
+  .appphone__chip {
+    animation: none;
+  }
+  .appphone__card {
+    animation: none;
+    opacity: 1;
+  }
+}

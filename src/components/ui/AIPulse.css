@@ -1,0 +1,131 @@
+/* ============================================================
+   AI PULSE — original 2D "neural core" visual
+   ============================================================ */
+.aipulse {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* radiating pulsing rings (centered core) */
+.aipulse__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  border: 1px solid rgba(244, 114, 182, 0.35);
+  transform: translate(-50%, -50%);
+  animation: aipulse-ring 3.6s ease-out infinite;
+}
+.aipulse__ring--1 { width: 160px; height: 160px; }
+.aipulse__ring--2 { width: 280px; height: 280px; animation-delay: 1.2s; }
+.aipulse__ring--3 { width: 400px; height: 400px; animation-delay: 2.4s; }
+@keyframes aipulse-ring {
+  0% { transform: translate(-50%, -50%) scale(0.4); opacity: 0.9; }
+  70% { opacity: 0.25; }
+  100% { transform: translate(-50%, -50%) scale(1); opacity: 0; }
+}
+
+/* glowing neural core */
+.aipulse__core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #f472b6;
+  font-size: 1.6rem;
+  background: radial-gradient(circle, rgba(244, 114, 182, 0.28), rgba(6, 10, 18, 0.85) 72%);
+  border: 1px solid rgba(244, 114, 182, 0.5);
+  box-shadow: 0 0 34px rgba(244, 114, 182, 0.4);
+}
+.aipulse__core svg {
+  filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.8));
+}
+
+/* orbiting micro-nodes */
+.aipulse__orb {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #a78bfa;
+  transform: translate(-50%, -50%);
+  animation: aipulse-orbit 9s linear infinite;
+}
+.aipulse__orb--1 { animation-duration: 9s; }
+.aipulse__orb--2 { animation-duration: 13s; }
+.aipulse__orb--3 { animation-duration: 17s; }
+.aipulse__orb--4 { animation-duration: 11s; width: 7px; height: 7px; }
+.aipulse__orb--5 { animation-duration: 15s; width: 14px; height: 14px; background: #22d3ee; }
+.aipulse__orb--1 { box-shadow: 0 0 10px #818cf8; }
+.aipulse__orb--2 { box-shadow: 0 0 10px #f472b6; }
+.aipulse__orb--3 { box-shadow: 0 0 10px #34d399; }
+@keyframes aipulse-orbit {
+  from { transform: translate(-50%, -50%) rotate(0deg) translateX(190px) rotate(0deg); }
+  to { transform: translate(-50%, -50%) rotate(360deg) translateX(190px) rotate(-360deg); }
+}
+
+/* floating concept chips around the edges */
+.aipulse__chip {
+  position: absolute;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  color: var(--text-2);
+  padding: 5px 11px;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--chipc) 40%, var(--line));
+  background: color-mix(in srgb, var(--chipc) 10%, rgba(6, 10, 18, 0.8));
+  animation: aipulse-float 6s ease-in-out infinite;
+  animation-delay: calc(var(--chipi) * 0.4s);
+  white-space: nowrap;
+}
+@keyframes aipulse-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* distribute chips (render after 3 rings + core + 5 orbs = child 10+) */
+.aipulse__chip:nth-child(10) { top: 16%; left: 8%; }
+.aipulse__chip:nth-child(11) { top: 10%; right: 10%; }
+.aipulse__chip:nth-child(12) { top: 30%; right: 3%; }
+.aipulse__chip:nth-child(13) { bottom: 20%; left: 14%; }
+.aipulse__chip:nth-child(14) { bottom: 28%; right: 16%; }
+.aipulse__chip:nth-child(15) { bottom: 8%; left: 40%; }
+
+/* subtle skewed orbit field */
+.aipulse::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  animation: aipulse-spin 30s linear infinite;
+  background: radial-gradient(circle at 50% 50%, transparent 0%, transparent 46%, rgba(244, 114, 182, 0.05) 47%, transparent 48%);
+}
+@keyframes aipulse-spin {
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 900px) {
+  .aipulse__ring--3 { display: none; }
+  .aipulse__chip { font-size: 0.62rem; padding: 4px 9px; }
+  /* tighter orbit on small screens */
+  @keyframes aipulse-orbit {
+    from { transform: translate(-50%, -50%) rotate(0deg) translateX(120px) rotate(0deg); }
+    to { transform: translate(-50%, -50%) rotate(360deg) translateX(120px) rotate(-360deg); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aipulse__ring,
+  .aipulse__orb,
+  .aipulse__chip,
+  .aipulse::before {
+    animation: none;
+  }
+}

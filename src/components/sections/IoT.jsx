@@ -1,7 +1,6 @@
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import CanvasScene from '../three/CanvasScene';
-import IoTScene from '../three/IoTScene';
+import IoTBoard from '../ui/IoTBoard';
 
 const items = [
   { icon: 'cpu', name: 'Arduino' },
@@ -27,9 +26,7 @@ export default function IoT() {
         <div className="iot-wrap">
           <Reveal>
             <div className="iot-stage">
-              <CanvasScene camera={{ position: [0, 0.1, 5.2], fov: 50 }}>
-                <IoTScene />
-              </CanvasScene>
+              <IoTBoard />
             </div>
           </Reveal>
 

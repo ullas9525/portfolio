@@ -1,0 +1,217 @@
+/* ============================================================
+   SKILL ORBIT — original 2D "tech constellation" visual
+   ============================================================ */
+.orbit {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  --orbit-r: 212px;
+  --orbit-r-sm: 150px;
+}
+
+/* ----- rings + crosshair backdrop (centered) ----- */
+.orbit__halo {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.orbit__halo::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--orbit-r-sm);
+  height: var(--orbit-r-sm);
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.05), transparent 70%);
+  transform: translate(-50%, -50%);
+}
+.orbit__ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.orbit__ring--r1 { width: var(--orbit-r); height: var(--orbit-r); }
+.orbit__ring--r2 { width: calc(var(--orbit-r) * 0.78); height: calc(var(--orbit-r) * 0.78); border-style: dashed; opacity: 0.6; }
+.orbit__ring--r3 { width: calc(var(--orbit-r) * 0.56); height: calc(var(--orbit-r) * 0.56); opacity: 0.4; }
+.orbit__ring--r1::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border: 1px solid color-mix(in srgb, var(--orbit) 40%, transparent);
+  border-radius: 50%;
+  transform: translate(3px, 3px);
+}
+.orbit__axis {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  background: linear-gradient(180deg, var(--line), transparent);
+  height: 1px;
+  transform: translate(-50%, -50%);
+}
+.orbit__axis--x { width: var(--orbit-r); }
+.orbit__axis--y { width: 1px; height: var(--orbit-r); }
+
+/* ----- hub ----- */
+.orbit__hub {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 118px;
+  height: 118px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 4px;
+  background: radial-gradient(circle, color-mix(in srgb, var(--orbit) 26%, rgba(6, 10, 18, 0.9)), rgba(6, 10, 18, 0.85) 70%);
+  border: 1px solid color-mix(in srgb, var(--orbit) 55%, transparent);
+  box-shadow: 0 0 26px color-mix(in srgb, var(--orbit) 40%, transparent), inset 0 0 22px rgba(255, 255, 255, 0.04);
+}
+.orbit__hub-icon {
+  display: grid;
+  place-items: center;
+  font-size: 1.4rem;
+  color: var(--orbit);
+  filter: drop-shadow(0 0 8px color-mix(in srgb, var(--orbit) 60%, transparent));
+}
+.orbit__hub-meta {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--text-3);
+  letter-spacing: 0.08em;
+}
+
+/* ----- orbiting node ----- */
+.orbit__node {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 68px;
+  height: 68px;
+  margin: -34px;
+  padding: 0;
+  border: none;
+  background: none;
+  color: var(--text);
+  border-radius: 50%;
+  /* rotate node out to angle, push along radius, rotate text back flat */
+  transform:
+    rotate(var(--rot))
+    translateY(calc(-1 * var(--orbit-r)))
+    rotate(calc(-1 * var(--rot)));
+  transition: transform 0.3s ease, filter 0.3s ease;
+}
+.orbit__node-core {
+  display: grid;
+  place-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(10, 17, 31, 0.9);
+  border: 1px solid color-mix(in srgb, var(--orbit) 45%, var(--line));
+  color: var(--text-2);
+  font-size: 1.2rem;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.6);
+}
+.orbit__node-tip {
+  position: absolute;
+  top: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--orbit) 16%, rgba(6, 10, 18, 0.85));
+  color: var(--text-2);
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.orbit__node:hover,
+.orbit__node:focus-visible {
+  transform:
+    rotate(var(--rot))
+    translateY(calc(-1 * var(--orbit-r) * 1.06))
+    rotate(calc(-1 * var(--rot)));
+}
+.orbit__node:hover .orbit__node-tip,
+.orbit__node:focus-visible .orbit__node-tip {
+  opacity: 1;
+}
+.orbit__node.is-active .orbit__node-core {
+  border-color: color-mix(in srgb, var(--orbit) 80%, transparent);
+  color: var(--orbit);
+  box-shadow: 0 0 20px color-mix(in srgb, var(--orbit) 45%, transparent);
+}
+.orbit__node.is-active .orbit__node-tip {
+  opacity: 1;
+  color: var(--orbit);
+}
+
+/* active node eases toward the hub */
+.orbit__node.is-active {
+  transform:
+    rotate(var(--rot))
+    translateY(calc(-1 * var(--orbit-r) * 0.52))
+    rotate(calc(-1 * var(--rot)));
+}
+
+/* ----- responsive ----- */
+@media (max-width: 1050px) {
+  .orbit {
+    --orbit-r: 168px;
+  }
+  .orbit__node {
+    width: 60px;
+    height: 60px;
+    margin: -30px;
+  }
+  .orbit__node-core {
+    width: 48px;
+    height: 48px;
+    font-size: 1.05rem;
+  }
+  .orbit__hub {
+    width: 104px;
+    height: 104px;
+  }
+}
+
+@media (max-width: 720px) {
+  .orbit {
+    --orbit-r: 140px;
+  }
+  .orbit__node {
+    width: 56px;
+    height: 56px;
+    margin: -28px;
+  }
+  .orbit__node-core {
+    width: 46px;
+    height: 46px;
+    font-size: 1rem;
+  }
+  .orbit__hub {
+    width: 96px;
+    height: 96px;
+  }
+  .orbit__ring--r1 { width: calc(var(--orbit-r) * 1.05); height: calc(var(--orbit-r) * 1.05); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbit__node,
+  .orbit__ring {
+    transition: none;
+  }
+}

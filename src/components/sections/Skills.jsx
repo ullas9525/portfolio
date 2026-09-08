@@ -2,15 +2,14 @@ import { useState } from 'react';
 import { skillCategories } from '../../data/skills';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import CanvasScene from '../three/CanvasScene';
-import SkillsScene from '../three/SkillsScene';
+import SkillOrbit from '../ui/SkillOrbit';
 
 export default function Skills() {
   const [activeCat, setActiveCat] = useState(0);
-  const [hoverSkill, setHoverSkill] = useState(null);
+  const [activeIdx, setActiveIdx] = useState(0);
 
   const cat = skillCategories[activeCat];
-  const info = hoverSkill || (cat ? cat.skills[0] : null);
+  const info = cat ? cat.skills[activeIdx] : null;
 
   return (
     <section className="section section-dim" id="skills" aria-label="Skills and tech stack">
@@ -18,15 +17,19 @@ export default function Skills() {
         <SectionHeading
           eyebrow="02 · Skills"
           title="The Stack I Build With"
-          sub="Technologies organized as a living system — hover the 3D nodes or browse the list. No fake percentage bars, just the tools I actually ship with."
+          sub="Technologies organized as a living constellation — hover a node or browse the list. No fake percentage bars, just the tools I actually ship with."
         />
 
         <div className="skills-wrap">
           <Reveal>
             <div className="skills-stage">
-              <CanvasScene camera={{ position: [0, 0.2, 6.2], fov: 55 }}>
-                <SkillsScene activeCat={activeCat} onHover={setHoverSkill} />
-              </CanvasScene>
+              <SkillOrbit
+                items={cat.skills}
+                label={cat.id}
+                color={cat.color}
+                active={activeIdx}
+                onSelect={setActiveIdx}
+              />
             </div>
           </Reveal>
 
@@ -41,7 +44,7 @@ export default function Skills() {
                     className={`skill-cat${activeCat === i ? ' active' : ''}`}
                     onClick={() => {
                       setActiveCat(i);
-                      setHoverSkill(null);
+                      setActiveIdx(0);
                     }}
                   >
                     {c.label}
@@ -76,7 +79,7 @@ export default function Skills() {
                   <button
                     key={s.name}
                     className={`skill-mobile-item${info && info.name === s.name ? ' active' : ''}`}
-                    onClick={() => setHoverSkill(s)}
+                    onClick={() => setActiveIdx(i)}
                   >
                     <Icon name={s.icon} size={16} />
                     {s.name}

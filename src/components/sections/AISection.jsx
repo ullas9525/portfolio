@@ -1,8 +1,7 @@
 import { aiMl } from '../../data/achievements';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
-import CanvasScene from '../three/CanvasScene';
-import AIScene from '../three/AIScene';
+import AIPulse from '../ui/AIPulse';
 
 export default function AISection() {
   return (
@@ -16,9 +15,7 @@ export default function AISection() {
 
         <Reveal>
           <div className="ai-stage">
-            <CanvasScene camera={{ position: [0, 0, 5.4], fov: 55 }}>
-              <AIScene />
-            </CanvasScene>
+            <AIPulse concepts={aiMl.concepts} />
           </div>
         </Reveal>
 
