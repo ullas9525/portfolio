@@ -1,4 +1,6 @@
 import { achievements, githubData } from '../../data/achievements';
+import { leetcode } from '../../data/leetcode';
+import useLeetCodeStats from '../../hooks/useLeetCodeStats';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
 
@@ -10,6 +12,31 @@ const glowByIcon = {
 };
 
 export default function Achievements() {
+  const { data: live } = useLeetCodeStats();
+  const solved = live?.solved ?? leetcode.solved;
+  const easy = live?.easy ?? leetcode.easy;
+  const medium = live?.medium ?? leetcode.medium;
+  const hard = live?.hard ?? leetcode.hard;
+  const streak = live?.longestStreak ?? leetcode.longestStreak;
+
+  const cards = achievements.map((a) => {
+    if (a.icon === 'code') {
+      return {
+        ...a,
+        title: `${solved} LeetCode Problems Solved`,
+        detail: `${easy} easy · ${medium} medium · ${hard} hard across ${leetcode.topics.length} data structure topics.`,
+      };
+    }
+    if (a.icon === 'flame') {
+      return {
+        ...a,
+        title: `${streak} Day Coding Streak`,
+        detail: 'Consistent daily problem solving with 100-day and 50-day badges on LeetCode.',
+      };
+    }
+    return a;
+  });
+
   return (
     <section className="section" id="achievements" aria-label="Achievements">
       <div className="wrap">
@@ -20,8 +47,8 @@ export default function Achievements() {
         />
 
         <div className="ach-grid">
-          {achievements.map((a, i) => (
-            <Reveal key={a.title} delay={0.05 * i} y={22}>
+          {cards.map((a, i) => (
+            <Reveal key={a.title + i} delay={0.05 * i} y={22}>
               <div className="glass ach-card" style={{ '--ach-glow': glowByIcon[a.icon] || glowByIcon.code }}>
                 <span className="ach-tag">{a.tag}</span>
                 <span className="ach-icon">

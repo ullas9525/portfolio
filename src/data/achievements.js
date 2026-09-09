@@ -4,13 +4,13 @@
 
 export const achievements = [
   {
-    title: '225+ LeetCode Problems Solved',
-    detail: '147+ easy · 72+ medium · 6+ hard across 16+ data structure topics.',
+    title: 'LeetCode Problems Solved',
+    detail: 'easy · medium · hard across data structure topics.',
     icon: 'code',
     tag: 'Programming',
   },
   {
-    title: '76+ Day Coding Streak',
+    title: 'Day Coding Streak',
     detail: 'Consistent daily problem solving with 100-day and 50-day badges on LeetCode.',
     icon: 'flame',
     tag: 'Consistency',
