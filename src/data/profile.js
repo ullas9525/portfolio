@@ -33,9 +33,9 @@ export const profile = {
 // ============================================================
 
 export const about = {
-  heading: 'About Ullas B R',
+  heading: 'About Me',
   intro:
-    'Ullas B R is a passionate software engineer and technology enthusiast who enjoys building practical, user-focused digital solutions. Interested in software development, Flutter applications, artificial intelligence, machine learning, IoT, and problem solving.',
+    'I am a passionate software engineer and technology enthusiast who enjoys building practical, user-focused digital solutions. Interested in Software Development, Web Development, Flutter Applications, Artificial Intelligence, Machine Learning, IoT, and Problem Solving.',
   blocks: [
     {
       id: 'who',
@@ -56,14 +56,14 @@ export const about = {
       label: 'My Interests',
       icon: 'spark',
       title: 'My Interests',
-      text: 'AI/ML, generative AI, mobile development, IoT, open-source, and clean architecture. I love taking a fuzzy problem and reducing it to elegant, working software.',
+      text: 'AI/ML, generative AI, web development, mobile development, IoT, open-source, and clean architecture. I love taking a fuzzy problem and reducing it to elegant, working software.',
     },
     {
       id: 'journey',
       label: 'My Journey',
       icon: 'route',
       title: 'My Development Journey',
-      text: 'Started with Python games, discovered web dev with JavaScript and React, fell in love with Flutter for mobile, and now deep-diving into AI/ML and embedded systems.',
+      text: 'Started with Iot and Python games, discovered web dev with JavaScript and React, fell in love with Flutter for mobile, and now deep-diving into AI/ML.',
     },
     {
       id: 'tech',

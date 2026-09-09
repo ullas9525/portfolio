@@ -22,7 +22,7 @@ function useIsMobile(breakpoint = 720) {
 export default function About() {
   const isMobile = useIsMobile();
   return (
-    <section className="section" id="about" aria-label="About Ullas B R">
+    <section className="section" id="about" aria-label="About Me">
       <div className="wrap">
         <SectionHeading
           eyebrow="01 · About"
