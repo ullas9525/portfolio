@@ -11,8 +11,8 @@ export default function DSASection() {
       <div className="wrap">
         <SectionHeading
           eyebrow="07 · Problem Solving"
-          title="Daily Reps, Real Growth"
-          sub="A futuristic coding terminal for a problem journey — arrays to dynamic programming, one streak at a time."
+          title="Solve. Learn. Repeat"
+          sub="My journey of competitive programming — from arrays to dynamic programming, one streak at a time."
         />
 
         <div className="dsa-wrap">
