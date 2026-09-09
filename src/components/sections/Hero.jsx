@@ -42,6 +42,15 @@ const socials = [
 
 export default function Hero() {
   const typed = useTypewriter(profile.heroKeywords);
+  const [isMobile, setIsMobile] = useState(() =>
+    typeof window !== 'undefined' ? window.innerWidth <= 640 : false
+  );
+
+  useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 640);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
 
   return (
     <section className="hero" id="home" aria-label="Introduction">
@@ -62,24 +71,30 @@ export default function Hero() {
             <span className="live-dot" aria-hidden="true" /> Software Engineer
           </span>
           <h1 className="hero-name hero-name-pt">
-            <ParticleText
-              text={profile.name}
-              particleSize={2}
-              density={4}
-              color="#e9eef7"
-              highlightColor="#22d3ee"
-              scatter={110}
-              gatherDuration={1600}
-              stagger={420}
-              pointerRepel={30}
-              repelRadius={140}
-              idleDrift={0.55}
-              trigger="mount"
-              fontSize="clamp(2.5rem, 6.4vw, 4.8rem)"
-              fontWeight={700}
-              fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
-              glow
-            />
+            {isMobile ? (
+              <span className="hero-name-solid">
+                Ullas <span className="grad">B R</span>
+              </span>
+            ) : (
+              <ParticleText
+                text={profile.name}
+                particleSize={2}
+                density={4}
+                color="#e9eef7"
+                highlightColor="#22d3ee"
+                scatter={110}
+                gatherDuration={1600}
+                stagger={420}
+                pointerRepel={30}
+                repelRadius={140}
+                idleDrift={0.55}
+                trigger="mount"
+                fontSize="clamp(2.5rem, 6.4vw, 4.8rem)"
+                fontWeight={700}
+                fontFamily="'Space Grotesk', 'Inter', system-ui, sans-serif"
+                glow
+              />
+            )}
           </h1>
 
           <p className="hero-role" aria-label={`Roles: ${profile.titles.join(', ')}`}>

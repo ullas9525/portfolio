@@ -218,6 +218,23 @@
     height: clamp(140px, 20vw, 170px);
   }
 }
+/* Mobile: solid gradient name (ParticleText is desktop-only).
+   Particle sampling on narrow widths renders glyphs hollow/dotted. */
+.hero-name-solid {
+  display: inline-block;
+  font-size: clamp(2.6rem, 11vw, 3.4rem);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+  color: var(--text);
+  text-shadow: 0 0 32px rgba(34, 211, 238, 0.28);
+}
+@media (max-width: 640px) {
+  .hero-name-pt {
+    height: auto;
+    min-height: 0;
+  }
+}
 .hero-copy::before {
   content: '';
   position: absolute;
