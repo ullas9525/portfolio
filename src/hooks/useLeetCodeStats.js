@@ -2,7 +2,9 @@
 // useLeetCodeStats — fetches live LeetCode stats for the DSA section.
 // Primary: alfa-leetcode-api (onrender) profile endpoint.
 // Fallback mirrors: faisalshohag vercel, legacy herokuapp.
-// Falls back to static data in src/data/leetcode.js on total failure.
+// Priority: live API → localStorage last-good (cached) → static fallback.
+// NOTE: failures are NEVER shown in the UI — only console.warn.
+// The UI just keeps showing cached/static numbers silently.
 // ============================================================
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { profile } from '../data/profile';
@@ -16,6 +18,11 @@ const ENDPOINTS = [
 ];
 const API_URL = ENDPOINTS[0];
 const TIMEOUT_MS = 12000;
+const CACHE_KEY = 'leetcode-stats-cache-v1';
+
+// Shared across all hook instances so DSA + Achievements don't double-fetch.
+let memoryCache = null; // { stats, timestamp }
+let inflight = null;
 
 function fallbackStats() {
   return {
@@ -30,6 +37,30 @@ function fallbackStats() {
     longestStreak: fallback.longestStreak,
     streaksLive: false,
   };
+}
+
+function loadCache() {
+  if (memoryCache) return memoryCache;
+  try {
+    const raw = localStorage.getItem(CACHE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw);
+    if (!parsed?.stats?.solved) return null;
+    memoryCache = parsed;
+    return parsed;
+  } catch {
+    return null;
+  }
+}
+
+function saveCache(stats) {
+  const entry = { stats, timestamp: Date.now() };
+  memoryCache = entry;
+  try {
+    localStorage.setItem(CACHE_KEY, JSON.stringify(entry));
+  } catch {
+    // storage full/blocked — ignore, memory cache still works
+  }
 }
 
 function toNum(v, fb) {
@@ -128,11 +159,13 @@ async function fetchFirstAlive(signal) {
 }
 
 export default function useLeetCodeStats() {
-  const [data, setData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [data, setData] = useState(() => loadCache()?.stats ?? null);
+  const [loading, setLoading] = useState(() => !loadCache());
   const [isLive, setIsLive] = useState(false);
-  const [lastUpdated, setLastUpdated] = useState(null);
+  const [lastUpdated, setLastUpdated] = useState(() => {
+    const ts = loadCache()?.timestamp;
+    return ts ? new Date(ts) : null;
+  });
   const abortRef = useRef(null);
 
   const fetchStats = useCallback(async () => {
@@ -141,20 +174,27 @@ export default function useLeetCodeStats() {
     abortRef.current = controller;
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
-    setLoading(true);
-    setError(null);
+    // Only flash skeletons when we have nothing to show yet.
+    setLoading((prev) => (data ? false : true));
     try {
       const { stats } = await fetchFirstAlive(controller.signal);
+      saveCache(stats);
       setData(stats);
       setIsLive(true);
       setLastUpdated(new Date());
     } catch (err) {
       if (err?.name === 'AbortError') {
-        setError('Request timed out. Showing cached stats.');
+        console.warn('[LeetCode stats] Request timed out. Showing last-good result.');
       } else {
-        setError(err?.message || 'Could not load live stats. Showing cached stats.');
+        console.warn('[LeetCode stats] Live fetch failed. Showing last-good result.', err);
       }
-      setData(fallbackStats());
+      const last = loadCache();
+      if (last?.stats) {
+        setData(last.stats);
+        setLastUpdated(new Date(last.timestamp));
+      } else {
+        setData(fallbackStats());
+      }
       setIsLive(false);
     } finally {
       clearTimeout(timer);
@@ -169,7 +209,7 @@ export default function useLeetCodeStats() {
     };
   }, [fetchStats]);
 
-  return { data, loading, error, isLive, lastUpdated, retry: fetchStats, apiUrl: API_URL };
+  return { data, loading, error: null, isLive, lastUpdated, retry: fetchStats, apiUrl: API_URL };
 }
 
 export { API_URL };

@@ -21,7 +21,7 @@ function LiveBadge({ loading, isLive, onRetry }) {
 }
 
 export default function DSASection() {
-  const { data: live, loading, error, isLive, retry } = useLeetCodeStats();
+  const { data: live, loading, isLive, retry } = useLeetCodeStats();
   const stats = live ?? {
     solved: leetcode.solved,
     easy: leetcode.easy,
@@ -86,15 +86,6 @@ export default function DSASection() {
                 </div>
               </div>
             )}
-
-            {error ? (
-              <p className="dsa-error" role="alert">
-                {error}{' '}
-                <button type="button" className="dsa-live-retry" onClick={retry}>
-                  Try again
-                </button>
-              </p>
-            ) : null}
 
             <div className="terminal-box">
               <div className="terminal-bar">
