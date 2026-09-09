@@ -16,11 +16,11 @@ function Monitor() {
   const tex = useMemo(() => makeMonitorTexture(), []);
   return (
     <group position={[-1.6, 0, 0]}>
-      <mesh position={[0, -1.6, 0]}>
-        <boxGeometry args={[0.12, 0.55, 0.12]} />
+      <mesh position={[0, -1.34, 0]}>
+        <boxGeometry args={[0.12, 0.9, 0.12]} />
         <meshStandardMaterial color="#1c2333" roughness={0.6} metalness={0.4} />
       </mesh>
-      <mesh position={[0, -1.36, 0]}>
+      <mesh position={[0, -1.815, 0]}>
         <boxGeometry args={[0.9, 0.05, 0.5]} />
         <meshStandardMaterial color="#1c2333" roughness={0.6} metalness={0.4} />
       </mesh>
@@ -40,7 +40,7 @@ function Monitor() {
 function Keyboard() {
   const keys = useMemo(() => new Array(26).fill(0).map((_, i) => i), []);
   return (
-    <group position={[-1.5, -1.85, 0.46]} rotation={[0.02, 0, 0]}>
+    <group position={[-1.5, -1.85, 0.7]} rotation={[0.02, 0, 0]}>
       <mesh>
         <boxGeometry args={[2.3, 0.07, 0.8]} />
         <meshStandardMaterial color="#161d2e" roughness={0.5} metalness={0.4} />
@@ -66,7 +66,7 @@ function Phone({ simple }) {
     ref.current.rotation.y = 0.45 + Math.sin(clock.elapsedTime * 0.35) * 0.18;
   });
   return (
-    <group ref={ref} position={[0.95, -1.55, 0.55]} rotation={[0.12, 0.45, 0.06]}>
+    <group ref={ref} position={[0.95, -1.11, 0.55]} rotation={[0.12, 0.45, 0.06]}>
       <mesh>
         <boxGeometry args={[0.72, 1.46, 0.09]} />
         <meshStandardMaterial color="#1b2740" roughness={0.35} metalness={0.6} />
