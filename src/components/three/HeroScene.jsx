@@ -1,16 +1,14 @@
 // ============================================================
 // HERO SCENE — a futuristic developer workstation
-//   monitor + keyboard + phone + floating code & project cards
+//   monitor + keyboard + phone
 // ============================================================
 import { useMemo, useRef } from 'react';
-import * as THREE from 'three';
 import { useFrame } from '@react-three/fiber';
-import { projects } from '../../data/projects';
 import { isMobileAgent, motionSafe } from '../../utils/helpers';
 import {
-  makeMonitorTexture, makePhoneTexture, makeProjectCoverTexture, makeGridTexture, makeCodeFrame,
+  makeMonitorTexture, makePhoneTexture, makeGridTexture,
 } from './textures';
-import { SceneLights, Rig, Particles, GlowDisc, FloatGroup } from './common';
+import { SceneLights, Rig, GlowDisc } from './common';
 
 function Monitor() {
   const tex = useMemo(() => makeMonitorTexture(), []);
@@ -82,59 +80,9 @@ function Phone({ simple }) {
   );
 }
 
-// Floating translucent "code" plane — pre-rendered animation frames
-function CodePlane({ position, size = [1.7, 1.1], speed = 0.35 }) {
-  const mesh = useRef();
-  const frames = useMemo(
-    () => {
-      const list = [];
-      for (let i = 0; i < 8; i++) {
-        const c = makeCodeFrame(384, 240, i * 3);
-        const t = new THREE.CanvasTexture(c);
-        t.colorSpace = THREE.SRGBColorSpace;
-        list.push(t);
-      }
-      return list;
-    },
-    []
-  );
-  useFrame(({ clock }) => {
-    if (!mesh.current || !motionSafe) return;
-    const idx = Math.floor(clock.elapsedTime * speed) % frames.length;
-    if (mesh.current.material.map !== frames[idx]) mesh.current.material.map = frames[idx];
-  });
-  return (
-    <mesh ref={mesh} position={position}>
-      <planeGeometry args={size} />
-      <meshBasicMaterial
-        map={frames[0]}
-        transparent
-        opacity={0.5}
-        toneMapped={false}
-        depthWrite={false}
-      />
-    </mesh>
-  );
-}
-
-// Floating mini project cover cards
-function ProjectCard({ project, position, scale = 1 }) {
-  const tex = useMemo(() => makeProjectCoverTexture({ ...project }, 512, 320), [project]);
-  return (
-    <FloatGroup speed={0.6} height={0.14}>
-      <mesh position={position} scale={scale}>
-        <planeGeometry args={[1.7, 1.05]} />
-        <meshStandardMaterial map={tex} roughness={0.4} metalness={0.2} />
-      </mesh>
-      <pointLight position={[position[0], position[1], position[2] - 1.2]} intensity={1.5} distance={3} color={project.accent} />
-    </FloatGroup>
-  );
-}
-
 export default function HeroScene() {
   const gridTex = useMemo(() => makeGridTexture(), []);
   const simple = isMobileAgent();
-  const covers = useMemo(() => [projects[0], projects[1]], []);
 
   return (
     <>
@@ -165,41 +113,6 @@ export default function HeroScene() {
         <Keyboard />
         <Phone simple={simple} />
 
-        {/* floating code planes */}
-        {!simple && (
-          <>
-            <CodePlane position={[3.2, 1.1, -1.2]} size={[2.2, 1.4]} speed={0.5} />
-            <CodePlane position={[2.6, 2.3, -2.0]} size={[1.6, 1.0]} speed={0.3} />
-          </>
-        )}
-
-        {/* floating project covers */}
-        {covers.map((p, i) => (
-          <ProjectCard
-            key={p.id}
-            project={p}
-            position={[i === 0 ? 3.0 : -3.2, i === 0 ? 1.5 : 2.2, i === 0 ? -1.6 : -0.5]}
-            scale={i === 0 ? 0.95 : 0.7}
-          />
-        ))}
-
-        {/* small technical floating objects */}
-        <FloatGroup speed={0.7} height={0.1}>
-          <mesh position={[1.6, 1.9, -2.2]}>
-            <icosahedronGeometry args={[0.3, 0]} />
-            <meshStandardMaterial color="#22d3ee" wireframe transparent opacity={0.8} />
-          </mesh>
-          <mesh position={[-0.6, 2.3, -1.4]} rotation={[0.6, 0.3, 0]}>
-            <torusGeometry args={[0.36, 0.08, 12, 24]} />
-            <meshStandardMaterial color="#818cf8" roughness={0.4} metalness={0.4} />
-          </mesh>
-          <mesh position={[3.4, -0.4, -0.4]} rotation={[0.4, 0, 0.4]}>
-            <boxGeometry args={[0.34, 0.34, 0.34]} />
-            <meshStandardMaterial color="#34d399" wireframe transparent opacity={0.7} />
-          </mesh>
-        </FloatGroup>
-
-        <Particles count={simple ? 120 : 260} color="#7dd3fc" size={0.04} />
         <GlowDisc position={[0, -3.2, -2]} radius={7} opacity={0.4} color="#0b6aa8" />
         </group>
       </Rig>
