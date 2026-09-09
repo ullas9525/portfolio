@@ -90,12 +90,10 @@ export default function Contact() {
                 <button type="submit" className="btn btn-primary">
                   <Icon name="send" size={16} /> Send Message
                 </button>
-                {sent ? (
+                {sent && (
                   <p className="form-success">
                     ✦ Opening your mail app with a ready-to-send message. Prefer email directly? {profile.links.email}
                   </p>
-                ) : (
-                  <p className="form-note">No backend needed — this opens a pre-filled email to {profile.links.email}.</p>
                 )}
               </form>
             </Reveal>
