@@ -92,15 +92,9 @@ export default function Projects() {
           </div>
 
           <div className="project-rows" style={{ marginTop: 20 }}>
-            <div>
+            <div style={{ gridColumn: '1 / -1' }}>
               <h4>My contribution</h4>
               <p>{project.contribution}</p>
-            </div>
-            <div>
-              <h4>Screenshots & docs</h4>
-              <p>
-                Grab screenshots, README and release assets from the GitHub repository — every project ships with docs and live links.
-              </p>
             </div>
           </div>
 
