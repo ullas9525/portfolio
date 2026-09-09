@@ -36,7 +36,7 @@ export default function Navbar() {
       <header className={`nav${scrolled ? ' scrolled' : ''}`}>
         <div className="nav-inner">
           <a className="logo" href="#home" aria-label="Back to top">
-            <span className="logo-mark">{profile.initials}</span>
+            <img className="logo-img" src={profile.logo} alt="Ullas B R logo" width={34} height={34} />
             <span style={{ display: active === 'home' ? 'inline' : 'inline' }}>{profile.name}</span>
           </a>
 

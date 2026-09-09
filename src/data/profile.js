@@ -6,14 +6,15 @@ export const profile = {
   name: 'Ullas B R',
   nameFirst: 'Ullas',
   initials: 'UBR',
+  logo: `${import.meta.env.BASE_URL}Logo.png`,
   titles: ['AI Enthusiast', 'Software Engineer', 'Web Developer'],
   tagline:
     'Build practical software solutions that connect technology, creativity, and real-world impact.',
   intro:
     "Yo! I'm Ullas — a code-crafting student who's building intelligent web stuff, sleek Flutter apps, and quirky Python games.",
-  photo: '/profile.jpg',
+  photo: `${import.meta.env.BASE_URL}profile.jpg`,
   photoAlt: 'Portrait of Ullas B R',
-  resumeUrl: '/resume.pdf',
+  resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
 
   // Rotating hero title words (typed effect)
   heroKeywords: ['AI Systems', 'Flutter Apps', 'Web Apps', 'IoT Hardware', 'Clean Code'],
