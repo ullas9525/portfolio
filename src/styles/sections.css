@@ -20,6 +20,18 @@
   z-index: 2;
   pointer-events: none;
 }
+/* Desktop only: override ScrollStack.css's `padding-bottom: 50rem` (≈800px of
+   blank scroll after the last card releases and slides out of view — the
+   empty box in the screenshot). 8rem caps max-scroll before the pin release
+   point, so scrolling parks on the last card instead of sliding into empty
+   space. Matches the mobile value. Scoped + higher specificity wins over the
+   later-injected ScrollStack.css. Wrapped in min-width so it never overrides
+   the mobile padding below. */
+@media (min-width: 721px) {
+  .about-stage .scroll-stack-scroller .scroll-stack-inner {
+    padding: 20vh 5rem 8rem;
+  }
+}
 
 /* Scroll-stack cards (tagged .about-scard on top of the base styles) */
 .about-scard {
