@@ -6,10 +6,10 @@ export default function Footer() {
       <div className="footer-inner">
         <p>
           © {new Date().getFullYear()} <strong style={{ color: 'var(--text)' }}>{profile.name}</strong> — crafted with{' '}
-          <span className="heart">♥</span> and a little WebGL.
+          <span className="heart">♥</span>
         </p>
         <p className="mono">
-          React · Three.js · Flutter-inspired · built to ship
+          React · Flutter-inspired · built to ship
         </p>
       </div>
     </footer>
