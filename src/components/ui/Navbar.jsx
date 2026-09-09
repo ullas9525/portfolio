@@ -69,33 +69,35 @@ export default function Navbar() {
 
           <button
             className="nav-burger"
-            onClick={() => setOpen(true)}
-            aria-label="Open navigation menu"
+            onClick={() => setOpen((v) => !v)}
+            aria-label={open ? 'Close navigation menu' : 'Open navigation menu'}
             aria-expanded={open}
           >
-            <Icon name="menu" size={20} />
+            <Icon name={open ? 'close' : 'menu'} size={20} />
           </button>
         </div>
       </header>
 
       <AnimatePresence>
         {open && (
-          <motion.nav
-            className="mobile-menu"
-            aria-label="Mobile"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.25 }}
-          >
-            <button
-              className="nav-burger"
-              style={{ position: 'absolute', top: 22, right: 20, display: 'inline-flex' }}
+          <>
+            <motion.div
+              className="mobile-menu-backdrop"
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               onClick={() => setOpen(false)}
-              aria-label="Close menu"
+            />
+            <motion.nav
+              className="mobile-menu"
+              aria-label="Mobile"
+              initial={{ opacity: 0, y: -10, scale: 0.98 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: -10, scale: 0.98 }}
+              transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }}
             >
-              <Icon name="close" size={20} />
-            </button>
             {navLinks.map((l, i) => (
               <motion.a
                 key={l.id}
@@ -114,8 +116,7 @@ export default function Navbar() {
               </motion.a>
             ))}
             <motion.a
-              className="btn btn-primary"
-              style={{ marginTop: 18 }}
+              className="btn btn-primary mobile-menu-cta"
               href={profile.resumeUrl}
               download="Ullas_BR_Resume.pdf"
               initial={{ opacity: 0, y: 12 }}
@@ -125,6 +126,7 @@ export default function Navbar() {
               <Icon name="download" size={16} /> Download Resume
             </motion.a>
           </motion.nav>
+          </>
         )}
       </AnimatePresence>
     </>

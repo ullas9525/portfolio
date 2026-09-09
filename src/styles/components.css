@@ -144,29 +144,53 @@
   font-size: 1.2rem;
   color: var(--text);
 }
-.mobile-menu {
+.mobile-menu-backdrop {
   position: fixed;
   inset: 0;
-  z-index: 999;
-  background: rgba(4, 8, 15, 0.96);
+  z-index: 1001;
+  background: rgba(2, 5, 11, 0.55);
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+/* Compact dropdown panel anchored under the header — page stays visible around it */
+.mobile-menu {
+  position: fixed;
+  top: calc(var(--nav-h) + 8px);
+  right: 16px;
+  left: auto;
+  z-index: 1002;
+  width: min(300px, calc(100vw - 32px));
+  max-height: calc(100dvh - var(--nav-h) - 32px);
+  overflow-y: auto;
+  background: rgba(9, 14, 26, 0.97);
+  border: 1px solid var(--line-strong);
+  border-radius: 16px;
+  box-shadow: 0 24px 60px -12px rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
+  align-items: stretch;
+  gap: 2px;
+  padding: 10px;
 }
 .mobile-menu a {
   font-family: var(--font-display);
-  font-size: 1.6rem;
+  font-size: 1rem;
   font-weight: 600;
-  padding: 12px 20px;
+  padding: 10px 14px;
+  border-radius: 10px;
   color: var(--text);
-  transition: color 0.2s;
+  transition: color 0.2s, background 0.2s;
 }
 .mobile-menu a:hover,
 .mobile-menu a.active {
   color: var(--accent);
+  background: rgba(255, 255, 255, 0.05);
+}
+.mobile-menu-cta {
+  margin-top: 8px;
+  justify-content: center;
 }
 
 @media (max-width: 1020px) {
