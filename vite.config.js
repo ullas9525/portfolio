@@ -3,6 +3,9 @@ import react from '@vitejs/plugin-react';
 import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
+  // GitHub Pages serves a project site under /<repo>/, so assets must
+  // be built with that base. Repo: ullas9525/portfolio → /portfolio/
+  base: '/portfolio/',
   plugins: [react()],
   resolve: {
     alias: {
