@@ -1,11 +1,39 @@
 import { leetcode } from '../../data/leetcode';
+import useLeetCodeStats from '../../hooks/useLeetCodeStats';
 import Icon from '../ui/Icons';
 import SectionHeading, { Reveal } from '../ui/SectionHeading';
 import CountUpBits from '../ui/CountUp';
 import CanvasScene from '../three/CanvasScene';
 import DSAScene from '../three/DSAScene';
 
+function LiveBadge({ loading, isLive, onRetry }) {
+  return (
+    <span className="dsa-live-badge" data-live={isLive ? 'true' : 'false'}>
+      <span className="dsa-live-dot" aria-hidden="true" />
+      {loading ? 'syncing…' : isLive ? 'live' : 'cached'}
+      {!loading && !isLive ? (
+        <button type="button" className="dsa-live-retry" onClick={onRetry}>
+          retry
+        </button>
+      ) : null}
+    </span>
+  );
+}
+
 export default function DSASection() {
+  const { data: live, loading, error, isLive, retry } = useLeetCodeStats();
+  const stats = live ?? {
+    solved: leetcode.solved,
+    easy: leetcode.easy,
+    medium: leetcode.medium,
+    hard: leetcode.hard,
+    acceptanceRate: null,
+    ranking: leetcode.ranking,
+    totalQuestions: null,
+    currentStreak: leetcode.currentStreak,
+    longestStreak: leetcode.longestStreak,
+  };
+
   return (
     <section className="section" id="dsa" aria-label="Problem solving and DSA">
       <div className="wrap">
@@ -25,28 +53,48 @@ export default function DSASection() {
           </Reveal>
 
           <div>
-            <div className="dsa-stats">
-              <div className="dsa-stat">
-                <CountUpBits to={leetcode.solved} duration={1.4} className="dsa-stat-val" />
-                <span className="dsa-plus">+</span>
-                <span>Solved</span>
-              </div>
-              <div className="dsa-stat">
-                <CountUpBits to={leetcode.easy} duration={1.4} className="dsa-stat-val" />
-                <span className="dsa-plus">+</span>
-                <span>Easy</span>
-              </div>
-              <div className="dsa-stat">
-                <CountUpBits to={leetcode.medium} duration={1.4} className="dsa-stat-val" />
-                <span className="dsa-plus">+</span>
-                <span>Medium</span>
-              </div>
-              <div className="dsa-stat">
-                <CountUpBits to={leetcode.hard} duration={1.4} className="dsa-stat-val" />
-                <span className="dsa-plus">+</span>
-                <span>Hard</span>
-              </div>
+            <div className="dsa-head-row">
+              <LiveBadge loading={loading} isLive={isLive} onRetry={retry} />
             </div>
+
+            {loading && !live ? (
+              <div className="dsa-stats dsa-stats-loading" aria-busy="true" aria-label="Loading LeetCode statistics">
+                {[0, 1, 2, 3].map((i) => (
+                  <div className="dsa-stat dsa-skeleton" key={i}>
+                    <span className="dsa-skeleton-bar" />
+                    <span className="dsa-skeleton-label" />
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="dsa-stats">
+                <div className="dsa-stat">
+                  <CountUpBits to={stats.solved} duration={1.4} className="dsa-stat-val" />
+                  <span>Solved</span>
+                </div>
+                <div className="dsa-stat">
+                  <CountUpBits to={stats.easy} duration={1.4} className="dsa-stat-val" />
+                  <span>Easy</span>
+                </div>
+                <div className="dsa-stat">
+                  <CountUpBits to={stats.medium} duration={1.4} className="dsa-stat-val" />
+                  <span>Medium</span>
+                </div>
+                <div className="dsa-stat">
+                  <CountUpBits to={stats.hard} duration={1.4} className="dsa-stat-val" />
+                  <span>Hard</span>
+                </div>
+              </div>
+            )}
+
+            {error ? (
+              <p className="dsa-error" role="alert">
+                {error}{' '}
+                <button type="button" className="dsa-live-retry" onClick={retry}>
+                  Try again
+                </button>
+              </p>
+            ) : null}
 
             <div className="terminal-box">
               <div className="terminal-bar">
@@ -55,14 +103,21 @@ export default function DSASection() {
               </div>
               <div className="terminal-lines">
                 <span style={{ color: '#22d3ee' }}>$ streak --today</span>{' '}
-                <span style={{ color: '#34d399' }}>→ <CountUpBits to={leetcode.currentStreak} duration={1.4} />+ days 🔥</span>
+                <span style={{ color: '#34d399' }}>→ <CountUpBits to={stats.currentStreak} duration={1.4} /> days 🔥{stats.streaksLive ? '' : ' (cached)'}</span>
                 <br />
                 <span style={{ color: '#22d3ee' }}>$ longest_streak</span>{' '}
-                <span style={{ color: '#34d399' }}>→ <CountUpBits to={leetcode.longestStreak} duration={1.4} />+ days</span>
+                <span style={{ color: '#34d399' }}>→ <CountUpBits to={stats.longestStreak} duration={1.4} /> days{stats.streaksLive ? '' : ' (cached)'}</span>
                 <br />
                 <span style={{ color: '#22d3ee' }}>$ global_ranking</span>{' '}
-                <span style={{ color: '#34d399' }}>→ {leetcode.ranking}</span>
+                <span style={{ color: '#34d399' }}>→ {typeof stats.ranking === 'number' ? stats.ranking.toLocaleString('en-US') : stats.ranking}</span>
                 <br />
+                {stats.acceptanceRate != null ? (
+                  <>
+                    <span style={{ color: '#22d3ee' }}>$ acceptance</span>{' '}
+                    <span style={{ color: '#34d399' }}>→ {stats.acceptanceRate}%</span>
+                    <br />
+                  </>
+                ) : null}
                 <span style={{ color: '#22d3ee' }}>$ badges</span>{' '}
                 <span style={{ color: '#fbbf24' }}>→ {leetcode.badges.join(' · ')}</span>
               </div>

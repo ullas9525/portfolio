@@ -205,6 +205,77 @@
   min-height: 280px;
 }
 
+/* ----- live LeetCode sync states ----- */
+.dsa-head-row {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 12px;
+}
+.dsa-live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.02);
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-3);
+}
+.dsa-live-badge[data-live='true'] {
+  color: #34d399;
+  border-color: rgba(52, 211, 153, 0.4);
+}
+.dsa-live-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentColor;
+  box-shadow: 0 0 8px currentColor;
+  animation: dsa-pulse 1.6s ease-in-out infinite;
+}
+@keyframes dsa-pulse {
+  50% { opacity: 0.4; }
+}
+.dsa-live-retry {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.dsa-error {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #fbbf24;
+  margin: -8px 0 14px;
+}
+.dsa-skeleton {
+  min-height: 76px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.dsa-skeleton-bar,
+.dsa-skeleton-label {
+  display: block;
+  border-radius: 6px;
+  background: linear-gradient(90deg, rgba(255,255,255,0.04) 25%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.04) 75%);
+  background-size: 200% 100%;
+  animation: dsa-shimmer 1.2s linear infinite;
+}
+.dsa-skeleton-bar { width: 60%; height: 22px; }
+.dsa-skeleton-label { width: 40%; height: 10px; }
+@keyframes dsa-shimmer {
+  from { background-position: 200% 0; }
+  to { background-position: -200% 0; }
+}
+
 @media (max-width: 960px) {
   .dsa-wrap {
     grid-template-columns: 1fr;
