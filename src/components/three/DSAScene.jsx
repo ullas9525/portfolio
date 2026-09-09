@@ -42,10 +42,9 @@ function TopicChip({ label, position, color = '#22d3ee' }) {
   );
 }
 
-function Terminal() {
+function Terminal({ snippet }) {
   const frames = useMemo(() => {
     const list = [];
-    const snippet = leetcode.terminalSnippet;
     for (let i = 0; i <= snippet.length; i++) {
       const c = makeTerminalFrame(snippet, i);
       const t = new THREE.CanvasTexture(c);
@@ -53,7 +52,7 @@ function Terminal() {
       list.push(t);
     }
     return list;
-  }, []);
+  }, [snippet]);
   const screen = useRef();
   useFrame(({ clock }) => {
     if (!screen.current || !screen.current.material || !motionSafe) return;
@@ -83,14 +82,30 @@ function Terminal() {
   );
 }
 
-export default function DSAScene() {
+export default function DSAScene({ stats } = {}) {
   const simple = isMobileAgent();
+  const snippet = useMemo(() => {
+    const solved = stats?.solved ?? leetcode.solved;
+    const easy = stats?.easy ?? leetcode.easy;
+    const medium = stats?.medium ?? leetcode.medium;
+    const hard = stats?.hard ?? leetcode.hard;
+    const current = stats?.currentStreak ?? leetcode.currentStreak;
+    const longest = stats?.longestStreak ?? leetcode.longestStreak;
+    return [
+      { line: '$ whoami', out: 'Ullas-B-R  --  problem solver' },
+      { line: '$ problems_solved', out: `${solved}  [easy:${easy}  medium:${medium}  hard:${hard}]` },
+      { line: '$ streak', out: `${current} days strong  (longest: ${longest})` },
+      { line: '$ sharpen_dsa()', out: 'ok. recursion.depth = +1' },
+      { line: '$ git log --oneline -3', out: 'dp[k]: bottom-up, again' },
+      { line: '$ ls dsa/', out: 'arrays  graphs  trees  heaps  dp  greedy' },
+    ];
+  }, [stats]);
   return (
     <>
       <SceneLights intensity={0.55} />
       {/* Static stage: the terminal never spins/tilts — it always
           faces the user down +z (the 3D rig was removed). */}
-      <Terminal />
+      <Terminal snippet={snippet} />
 
       {!simple && (
         <>

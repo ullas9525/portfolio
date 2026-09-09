@@ -19,10 +19,11 @@ export const leetcode = {
     'Binary Tree', 'Dynamic Programming',
   ],
   // Terminal snippet shown inside the 3D coding terminal
+  // (fallback template — DSAScene builds live text from stats at runtime)
   terminalSnippet: [
     { line: '$ whoami', out: 'Ullas-B-R  --  problem solver' },
-    { line: '$ problems_solved', out: '225+  [easy:147+  medium:72+  hard:6+]' },
-    { line: '$ streak', out: '76+ days strong  (longest: 76+)' },
+    { line: '$ problems_solved', out: '225  [easy:147  medium:72  hard:6]' },
+    { line: '$ streak', out: '76 days strong  (longest: 76)' },
     { line: '$ sharpen_dsa()', out: 'ok. recursion.depth = +1' },
     { line: '$ git log --oneline -3', out: 'dp[k]: bottom-up, again' },
     { line: '$ ls dsa/', out: 'arrays  graphs  trees  heaps  dp  greedy' },

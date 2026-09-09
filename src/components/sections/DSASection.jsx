@@ -47,7 +47,7 @@ export default function DSASection() {
           <Reveal>
             <div className="dsa-stage">
               <CanvasScene camera={{ position: [0, 0.2, 5.6], fov: 50 }}>
-                <DSAScene />
+                <DSAScene stats={stats} />
               </CanvasScene>
             </div>
           </Reveal>
