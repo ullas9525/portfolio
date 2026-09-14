@@ -139,24 +139,13 @@ const TargetCursor = ({
 
       const corners = Array.from(cornersRef.current);
       corners.forEach((corner, i) => {
-        const currentX = gsap.getProperty(corner, 'x');
-        const currentY = gsap.getProperty(corner, 'y');
-
         const targetX = targetCornerPositionsRef.current[i].x - cursorX;
         const targetY = targetCornerPositionsRef.current[i].y - cursorY;
 
-        const finalX = currentX + (targetX - currentX) * strength;
-        const finalY = currentY + (targetY - currentY) * strength;
-
-        const duration = strength >= 0.99 ? (parallaxOn ? 0.2 : 0) : 0.05;
-
-        gsap.to(corner, {
-          x: finalX,
-          y: finalY,
-          duration: duration,
-          ease: duration === 0 ? 'none' : 'power1.out',
-          overwrite: 'auto'
-        });
+        // While locked onto a target, snap corners without per-frame lag —
+        // the cursor itself still follows the mouse, but corners stay glued
+        // to the target box so they never jitter/shake on small moves.
+        gsap.set(corner, { x: targetX, y: targetY, overwrite: 'auto' });
       });
     };
 
