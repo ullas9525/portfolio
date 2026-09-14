@@ -102,6 +102,15 @@ button {
   color: inherit;
 }
 
+a,
+button,
+.btn,
+.nav-link,
+.social-btn,
+.mobile-menu a {
+  cursor: none;
+}
+
 input,
 textarea {
   font-family: inherit;
