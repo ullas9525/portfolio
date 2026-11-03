@@ -4,7 +4,7 @@ I built this as a futuristic, interactive 3D developer portfolio with **React + 
 
 🔗 **Live:** https://ullas9525.github.io/portfolio/
 
-I'm a code-crafting student building intelligent web apps, sleek Flutter apps, and quirky Python games — practical software that connects technology, creativity, and real-world impact.
+I'm a Software Development Engineer focused on Backend and AI Application Development — a code-crafting student building intelligent web apps, sleek Flutter apps, and quirky Python games — practical software that connects technology, creativity, and real-world impact.
 
 ---
 

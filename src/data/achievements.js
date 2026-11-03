@@ -22,7 +22,7 @@ export const achievements = [
     tag: 'Building',
   },
   {
-    title: 'Full-Stack + AI + IoT Builder',
+    title: 'Software Development Engineer – Backend & AI',
     detail: 'Comfortable across the entire stack — React/FastAPI web apps, Flutter mobile, scikit-learn ML, and Arduino/ESP embedded systems.',
     icon: 'cpu',
     tag: 'Breadth',

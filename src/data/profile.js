@@ -7,17 +7,25 @@ export const profile = {
   nameFirst: 'Ullas',
   initials: 'UBR',
   logo: `${import.meta.env.BASE_URL}Logo.png`,
-  titles: ['AI Enthusiast', 'Software Engineer', 'Web Developer'],
+  titles: ['Software Development Engineer – Backend & AI Application Development'],
   tagline:
-    'Build practical software solutions that connect technology, creativity, and real-world impact.',
+    'Software Development Engineer focused on Backend and AI Application Development. Build practical software solutions that connect technology, creativity, and real-world impact.',
   intro:
-    "Yo! I'm Ullas — a code-crafting student who's building intelligent web stuff, sleek Flutter apps, and quirky Python games.",
+    "Yo! I'm Ullas — a Software Development Engineer focused on Backend and AI Application Development, a code-crafting student who's building intelligent web stuff, sleek Flutter apps, and quirky Python games.",
   photo: `${import.meta.env.BASE_URL}profile.jpg`,
   photoAlt: 'Portrait of Ullas B R',
   resumeUrl: `${import.meta.env.BASE_URL}resume.pdf`,
 
   // Rotating hero title words (typed effect)
-  heroKeywords: ['AI Systems', 'Flutter Apps', 'Web Apps', 'IoT Hardware', 'Clean Code'],
+  heroKeywords: [
+    'Backend Services',
+    'AI Applications',
+    'AI Systems',
+    'Flutter Apps',
+    'Web Apps',
+    'IoT Hardware',
+    'Clean Code',
+  ],
 
   links: {
     email: 'ullasbr.2005@gmail.com',
@@ -36,14 +44,14 @@ export const profile = {
 export const about = {
   heading: 'About Me',
   intro:
-    'I am a passionate software engineer and technology enthusiast who enjoys building practical, user-focused digital solutions. Interested in Software Development, Web Development, Flutter Applications, Artificial Intelligence, Machine Learning, IoT, and Problem Solving.',
+    'I am a Software Development Engineer focused on Backend and AI Application Development who enjoys building practical, user-focused digital solutions. Interested in Software Development, Web Development, Flutter Applications, Artificial Intelligence, Machine Learning, IoT, and Problem Solving.',
   blocks: [
     {
       id: 'who',
       label: 'Who I Am',
       icon: 'user',
       title: 'Who I Am',
-      text: 'A software engineer in training who believes great products are born where code, design and empathy meet. Currently pursuing my Bachelor of Engineering at P.E.S. College of Engineering, Mandya.',
+      text: 'A Software Development Engineer in training, focused on Backend and AI Application Development, who believes great products are born where code, design and empathy meet. Currently pursuing my Bachelor of Engineering at P.E.S. College of Engineering, Mandya.',
     },
     {
       id: 'build',
@@ -64,7 +72,7 @@ export const about = {
       label: 'My Journey',
       icon: 'route',
       title: 'My Development Journey',
-      text: 'Started with Iot and Python games, discovered web dev with JavaScript and React, fell in love with Flutter for mobile, and now deep-diving into AI/ML.',
+      text: 'Started with IoT and Python games, then JavaScript and React, and shipped Flutter apps along the way. I now focus on backend engineering and AI application development — FastAPI services, application logic, and AI workflows built into real software.',
     },
     {
       id: 'tech',
@@ -85,7 +93,7 @@ export const about = {
       label: 'What Is Next',
       icon: 'rocket',
       title: 'What I Want to Build Next',
-      text: 'Reliable, scalable software that solves real problems. Long-term goal: a highly skilled software engineer creating meaningful technology that improves people\u2019s lives.',
+      text: 'Reliable, scalable software that solves real problems. Long-term goal: a highly skilled Software Development Engineer, focused on Backend and AI Application Development, creating meaningful technology that improves people\u2019s lives.',
     },
   ],
 };

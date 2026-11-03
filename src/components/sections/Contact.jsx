@@ -52,7 +52,7 @@ export default function Contact() {
                 <span className="eyebrow">Ready when you are</span>
                 <h2 className="contact-h2">Let's Build <span style={{ background: 'var(--grad)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Something.</span></h2>
                 <p className="contact-copy">
-                  Internships, collaborations, freelance work, or just a solid technical conversation — my inbox is open.
+                  Software Development Engineer internships in Backend and AI Application Development, collaborations, freelance work, or just a solid technical conversation — my inbox is open.
                 </p>
               </Reveal>
 

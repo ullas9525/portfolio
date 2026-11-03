@@ -68,7 +68,7 @@ export default function Hero() {
           transition={{ duration: 0.7, delay: 0.4 }}
         >
           <span className="hero-kicker">
-            <span className="live-dot" aria-hidden="true" /> Software Engineer
+            <span className="live-dot" aria-hidden="true" /> Software Development Engineer
           </span>
           <h1 className="hero-name hero-name-pt">
             {isMobile ? (
