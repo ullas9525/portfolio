@@ -2,7 +2,7 @@
 // Reusable 3D building blocks: scene lights, pointer rig,
 // particles, floating group, and lazy-in-view canvas mount.
 // ============================================================
-import { useMemo, useRef, useEffect, useState } from 'react';
+import { useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { useFrame, useThree } from '@react-three/fiber';
 import { motionSafe } from '../../utils/helpers';
@@ -87,22 +87,6 @@ export function Particles({
   );
 }
 
-/* ---------------- Soft floating wrapper ---------------- */
-export function FloatGroup({ children, speed = 0.5, height = 0.25, rotSpeed = 0.12, ...rest }) {
-  const ref = useRef();
-  useFrame((state) => {
-    if (!ref.current || !motionSafe) return;
-    const t = state.clock.elapsedTime;
-    ref.current.position.y = Math.sin(t * speed) * height;
-    ref.current.rotation.y += rotSpeed * 0.003;
-  });
-  return (
-    <group {...rest}>
-      <group ref={ref}>{children}</group>
-    </group>
-  );
-}
-
 /* ---------------- Gradient shader plane (soft glow disc) ---------------- */
 export function GlowDisc({ position = [0, -2.4, -1], radius = 6, opacity = 0.5, color = '#22d3ee' }) {
   const mat = useMemo(() => {
@@ -135,38 +119,5 @@ export function GlowDisc({ position = [0, -2.4, -1], radius = 6, opacity = 0.5, 
       <planeGeometry args={[radius * 2, radius * 2, 1, 1]} />
       <primitive object={mat} attach="material" />
     </mesh>
-  );
-}
-
-/* ---------------- Lazy-mount wrapper: only render scene near viewport ---------------- */
-export function Lazy3D({ children, rootMargin = '600px', className, style }) {
-  const ref = useRef(null);
-  const [on, setOn] = useState(false);
-  useEffect(() => {
-    const el = ref.current;
-    if (!el || !('IntersectionObserver' in window) || !motionSafe) {
-      setOn(true);
-      return undefined;
-    }
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setOn(true);
-          obs.disconnect();
-        }
-      },
-      { rootMargin }
-    );
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, [rootMargin]);
-  if (!motionSafe) {
-    // still allow scene but static — actually skip heavy 3D for reduced motion
-    return null;
-  }
-  return (
-    <div ref={ref} className={className} style={{ position: 'absolute', inset: 0, ...style }}>
-      {on ? children : null}
-    </div>
   );
 }

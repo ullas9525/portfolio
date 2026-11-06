@@ -73,5 +73,3 @@ export const skillCategories = [
     ],
   },
 ];
-
-export const allSkillNames = skillCategories.flatMap((c) => c.skills.map((s) => s.name));

@@ -10,7 +10,7 @@ I'm a Software Development Engineer focused on Backend and AI Application Develo
 
 ## ✨ What I built into it
 
-- **3D everywhere** — my Hero workstation, About desk, Skills node clusters, Projects gallery, DSA terminal, and Contact backdrop are all real-time Three.js scenes (procedural canvas textures, zero external 3D assets).
+- **3D where it counts** — my Hero workstation, DSA terminal, and Contact backdrop are real-time Three.js scenes (procedural canvas textures, zero external 3D assets). About, Skills, Projects, AI/ML, IoT, and Flutter use purpose-built 2D interactive components for speed and clarity.
 - **Live LeetCode stats** — my DSA section and Achievements pull my real solved count, difficulty split, ranking, and streaks from a LeetCode API mirror chain. If the API is slow or down, you'll never see an error on screen — I fall back to my last-good cached numbers (localStorage), then to my static snapshot. Failures only log to the console.
 - **Achievements stay in sync** — my "LeetCode Problems Solved" and "Day Coding Streak" cards render from the same live hook, with exact numbers (no `+` suffixes on live counts).
 - **Animated 3D DSA terminal** — the terminal in the 3D scene re-renders its canvas frames when my live stats arrive.
@@ -34,9 +34,9 @@ I'm a Software Development Engineer focused on Backend and AI Application Develo
 Hero → About → Skills → Projects → Flutter → AI/ML → IoT → DSA → GitHub → Education → Experience → Achievements → Resume → Contact.
 
 - **Hero** — my workstation monitor, keyboard, phone, floating code + project cards, parallax camera, typed keyword rotation.
-- **About** — 7 profile blocks inside a 3D desk interaction.
-- **Skills** — 3D node clusters per category; hover a node to read my note on it.
-- **Projects** — my 3D gallery; clicking a card brings up the full detail panel with GitHub + live demo links.
+- **About** — 7 profile cards in a scroll-driven stacking interaction.
+- **Skills** — an orbital constellation per category; hover a node to read my note on it.
+- **Projects** — an expandable accordion gallery; hovering a cover expands it and brings up the full detail panel with GitHub + live demo links.
 - **Flutter / AI / IoT** — deep-dives into my mobile apps, ML pipeline (preprocess → train → evaluate → ship), and embedded hardware.
 - **DSA** — my animated coding terminal, count-up stats, streaks, ranking, badges, and topic coverage.
 - **GitHub** — my repo spotlight + contribution snapshot.
@@ -98,11 +98,15 @@ I host on **GitHub Pages** (project site → `https://ullas9525.github.io/portfo
 src/
 ├── data/                 # all my editable content
 ├── components/
-│   ├── three/            # one 3D scene per section (procedural, no external assets)
+│   ├── three/            # shared Three.js scene toolkit (procedural, no external assets)
 │   │   ├── CanvasScene.jsx   # my shared <Canvas> scaffolding
-│   │   ├── common.jsx        # lights, pointer rig, particles, glow disc, lazy mount
-│   │   └── textures.js       # my procedural canvas textures (screens, covers, UI)
-│   ├── ui/               # Loader, Navbar, Icons, SectionHeading/Reveal/CountUp
+│   │   ├── common.jsx        # lights, pointer rig, particles, glow disc
+│   │   ├── textures.js       # my procedural canvas textures (screens, covers, UI)
+│   │   ├── HeroScene.jsx     # my workstation
+│   │   ├── DSAScene.jsx      # my animated coding terminal
+│   │   └── ContactScene.jsx  # my final backdrop
+│   ├── ui/               # Navbar, Loader, Icons, SectionHeading/Reveal/CountUp,
+│   │                     # and 2D visuals (ScrollStack, SkillOrbit, AccordionGallery, …)
 │   └── sections/         # DOM content layered over each scene
 ├── hooks/
 │   └── useLeetCodeStats.js   # my live LeetCode fetch: API → localStorage cache → static fallback

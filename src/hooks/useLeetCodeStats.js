@@ -16,7 +16,6 @@ const ENDPOINTS = [
   `https://leetcode-api-faisalshohag.vercel.app/${USER}`,
   `https://leetcode-stats-api.herokuapp.com/${USER}`,
 ];
-const API_URL = ENDPOINTS[0];
 const TIMEOUT_MS = 12000;
 const CACHE_KEY = 'leetcode-stats-cache-v1';
 
@@ -167,6 +166,10 @@ export default function useLeetCodeStats() {
     return ts ? new Date(ts) : null;
   });
   const abortRef = useRef(null);
+  // Tracks whether any stats are currently renderable, so retries don't flash
+  // a skeleton over already-visible data. Kept in a ref because fetchStats is
+  // intentionally stable ([]) and would otherwise close over stale state.
+  const hasDataRef = useRef(Boolean(memoryCache));
 
   const fetchStats = useCallback(async () => {
     if (abortRef.current) abortRef.current.abort();
@@ -175,11 +178,12 @@ export default function useLeetCodeStats() {
     const timer = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
     // Only flash skeletons when we have nothing to show yet.
-    setLoading((prev) => (data ? false : true));
+    setLoading(!hasDataRef.current);
     try {
       const { stats } = await fetchFirstAlive(controller.signal);
       saveCache(stats);
       setData(stats);
+      hasDataRef.current = true;
       setIsLive(true);
       setLastUpdated(new Date());
     } catch (err) {
@@ -195,6 +199,7 @@ export default function useLeetCodeStats() {
       } else {
         setData(fallbackStats());
       }
+      hasDataRef.current = true;
       setIsLive(false);
     } finally {
       clearTimeout(timer);
@@ -209,7 +214,5 @@ export default function useLeetCodeStats() {
     };
   }, [fetchStats]);
 
-  return { data, loading, error: null, isLive, lastUpdated, retry: fetchStats, apiUrl: API_URL };
+  return { data, loading, error: null, isLive, lastUpdated, retry: fetchStats };
 }
-
-export { API_URL };

@@ -122,7 +122,3 @@ export const projects = [
     type: 'AI / Web',
   },
 ];
-
-export function getProjectById(id) {
-  return projects.find((p) => p.id === id) || null;
-}
